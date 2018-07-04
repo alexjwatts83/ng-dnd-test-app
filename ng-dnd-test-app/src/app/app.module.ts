@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DndModule } from 'ng2-dnd';
+import { DndCalendarComponent } from './dnd-calendar/dnd-calendar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DndCalendarComponent
   ],
   imports: [
     BrowserModule,
