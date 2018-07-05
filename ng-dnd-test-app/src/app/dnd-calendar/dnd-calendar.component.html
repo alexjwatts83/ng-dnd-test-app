@@ -1,9 +1,9 @@
-<div>
-  Filters and stuff
+<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
+    <div>Filters:&nbsp;</div>
 </div>
-<div style="display: flex;border: 2px solid black;">
+<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
     <div>Unscheduled:&nbsp;</div>
-    <div style="flex: 1;display: flex;background-color: lightslategray;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
+    <div style="flex: 1;display: flex;background-color: #ffffff;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
       <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;">No Unscheduled jobs</div>
       <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
           <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
