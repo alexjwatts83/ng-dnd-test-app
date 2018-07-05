@@ -358,7 +358,7 @@ export class DndCalendarComponent implements OnInit {
     return cust;
   }
 
-  createDay(weekNumber: number, dayName: string, startingPoint: number): DndDay {
+  createDay(weekNumber: number, dayName: string, startingPoint: number, date: Date): DndDay {
     let cust1 = this.createCustomer(startingPoint + 0, 'Gosford', '2250');
     let cust2 = this.createCustomer(startingPoint + 1, 'Erina', '2250');
     let cust3 = this.createCustomer(startingPoint + 2, 'Erina', '2250');
@@ -371,9 +371,16 @@ export class DndCalendarComponent implements OnInit {
     let timeslot2 = new DndTimeSlot('2pm', 5, [cust3, cust4, cust7]);
     let timeslot3 = new DndTimeSlot('7pm', 7, [cust5, cust6]);
 
-    let day = new DndDay(weekNumber, dayName, [timeslot1, timeslot2, timeslot3]);
+    let day = new DndDay(weekNumber, dayName, [timeslot1, timeslot2, timeslot3], date);
 
     return day;
+  }
+
+  getMonday(date) {
+    var day = date.getDay() || 7;
+    if (day !== 1)
+      date.setHours(-24 * (day - 1));
+    return date;
   }
   onSubmit() {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
@@ -382,7 +389,7 @@ export class DndCalendarComponent implements OnInit {
     this.model = {
       FilterBy: this.FilterBy
     };
-    console.log(this.FirstNames);
+    //console.log(this.FirstNames);
     let mockDays = [
       {
         name: 'MON',
@@ -411,9 +418,12 @@ export class DndCalendarComponent implements OnInit {
     ];
 
     this.Days = [];
+    let monday = this.getMonday(new Date());
     for (let i = 0; i < mockDays.length; i++) {
       let mockDay = mockDays[i];
-      this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint));
+      let date = new Date(monday);
+      date.setDate(date.getDate() + i);
+      this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint, date));
     }
 
     let startingPoint = 41;

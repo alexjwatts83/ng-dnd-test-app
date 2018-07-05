@@ -3,14 +3,12 @@
   <div>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div>Group By</div>
-        <input type="radio" value="Suburb" (click)="FilterBy = 'Suburb'" name="food" [(ngModel)]="model.FilterBy"> Suburb
-        <input type="radio" value="PostCode" (click)="FilterBy = 'PostCode'" name="food" [(ngModel)]="model.FilterBy"> PostCode
+      <input type="radio" value="Suburb" (click)="FilterBy = 'Suburb'" name="food" [(ngModel)]="model.FilterBy"> Suburb
+      <input type="radio" value="PostCode" (click)="FilterBy = 'PostCode'" name="food" [(ngModel)]="model.FilterBy"> PostCode
       <!-- <div>
         <pre>{{model | json}}</pre>
       </div> -->
     </form>
-
-    <!-- <input name="options" ng-control="options" type="radio" [value]="PostCode" [(ngModel)]="FilterBy" ><br/> -->
   </div>
 </div>
 <div *ngIf="ShowUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
@@ -36,13 +34,13 @@
 <div class="dnd-container">
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
     <div class="dnd-timeslot-details">
-      <div class="flex-one">
+      <!-- <div class="flex-one">
         <div class="dnd-timeslot-details-detail">
-          Wk {{day.WeekNumber}} &nbsp;
+          ({{day.Date | date:'dd/MM'}})
         </div>
-      </div>
+      </div> -->
       <div class="flex-one">
-        <div class="dnd-timeslot-details-detail">{{day.DayName}}</div>
+        <div class="dnd-timeslot-details-detail">{{day.Date | date:'EEE'}} ({{day.Date | date:'dd/MM'}})</div>
       </div>
     </div>
 
