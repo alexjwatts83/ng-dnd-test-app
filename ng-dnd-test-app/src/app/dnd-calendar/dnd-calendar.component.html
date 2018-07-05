@@ -4,10 +4,11 @@
 <div style="display: flex;border: 2px solid black;">
     <div>Unscheduled:&nbsp;</div>
     <div style="flex: 1;display: flex;background-color: lightslategray;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
-      <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 20px;">No Unscheduled jobs</div>
-      <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 20px;">
+      <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;">No Unscheduled jobs</div>
+      <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
           <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
-              <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
+              <div class="draggle-customer" style="margin-left: 5px;"
+              title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
                 dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
                 <strong>&Xi;
                   <span>{{customer.PostCode}}</span>

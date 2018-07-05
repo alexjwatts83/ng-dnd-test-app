@@ -96,7 +96,21 @@ export class DndCalendarComponent implements OnInit {
       this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint));
     }
 
-    console.log(this.Days);
+    //console.log(this.Days);
+    let startingPoint = 41;
+    this.UnschduledJobs = [];
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
+      startingPoint++;
+    }
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
+      startingPoint++;
+    }
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
+      startingPoint++;
+    }
   }
 
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
@@ -107,7 +121,7 @@ export class DndCalendarComponent implements OnInit {
     console.log(`droppedTimeslotIndex: ${droppedTimeslotIndex}`);
     console.log(`_selectedTimeSlotIndex: ${this._selectedTimeSlotIndex}`);
 
-    if(this.simpleDrop.dragData.fromUnscheduled){
+    if (this.simpleDrop.dragData.fromUnscheduled) {
       console.log('from unscheduled');
       let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
       let filterView = [];
@@ -120,7 +134,7 @@ export class DndCalendarComponent implements OnInit {
         }
       });
       // add to unscheduled
-      let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers .concat(this.UnschduledJobs[selectedSlotIndex]);
+      let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.UnschduledJobs[selectedSlotIndex]);
       console.log("concat:", concat);
       this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
 
@@ -129,7 +143,7 @@ export class DndCalendarComponent implements OnInit {
 
       return;
     }
-    if(droppedDayIndex==-1 && droppedTimeslotIndex ==-1){
+    if (droppedDayIndex == -1 && droppedTimeslotIndex == -1) {
       let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
       let filterView = [];
       let selectedSlotIndex = -1;
@@ -216,7 +230,7 @@ export class DndCalendarComponent implements OnInit {
     this._selectedCustomerIndex = customerIndex;
   }
 
-  closePoorMansModal(){
+  closePoorMansModal() {
     this._selectedCustomerIndex = -1;
   }
 }
