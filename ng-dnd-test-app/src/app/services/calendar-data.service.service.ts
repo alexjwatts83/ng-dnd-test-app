@@ -7,17 +7,27 @@ import { MockNameService } from '../services/mock-name.service';
 @Injectable()
 export class CalendarDataService {
   private _days: DndDay[];
+  private _currentStartFrom:number;
 
   constructor(private mockNameService: MockNameService) {
     this._days = [];
+    this._currentStartFrom = 0;
   }
 
-  public getDays(): DndDay[] {
-    let monday = this.getMonday(new Date());
-    for (let i = 0; i < 7; i++) {
-      let date = new Date(monday);
+  public getDays(startFrom: number, take: number): DndDay[] {
+    this._days = [];
+    let startFromDate = this.getMonday(new Date());
+    if(startFrom==0){
+      this._currentStartFrom = 0;
+    }else{
+      startFromDate = new Date(startFromDate);
+      startFromDate.setDate(startFromDate.getDate() + startFrom);
+    }
+    
+    for (let i = 0; i < take; i++) {
+      let date = new Date(startFromDate);
       date.setDate(date.getDate() + i);
-      this._days.push(this.createDay(((i + 1) * 7), date));
+      this._days.push(this.createDay(((i + 1) * take), date));
     }
 
     return this._days;

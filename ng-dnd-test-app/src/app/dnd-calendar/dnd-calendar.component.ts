@@ -25,6 +25,10 @@ export class DndCalendarComponent implements OnInit {
   heroForm: any;
   simpleDrop: any = null;
   navigateDays: number = 0;
+  takeDays: number = 5;
+  navigationDaysOptions: number[] = [
+    -14,-7,-1,0,1,7,14
+  ];
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -59,12 +63,22 @@ export class DndCalendarComponent implements OnInit {
       filterBy: this.filterBy
     };
 
-    this.days = this.calendarDataService.getDays();
+    this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
 
     let startingPoint = 41;
     this.unschduledJobs = [];
     // if (this.showUnscheduled) {
     // }
+  }
+
+  formatDays(days: number): string{
+    if(days == 0){
+      return 'This week';
+    }
+    if(days == -1 || days == 1){
+      return `${days} Day`;
+    }
+    return `${days} Days`;
   }
   //todo: refactor and move to service
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
@@ -174,5 +188,18 @@ export class DndCalendarComponent implements OnInit {
 
   navigateToDay(daysAdd: number){
     console.log('daysAdd:',daysAdd);
+    if(this._selectedTimeSlotIndex != -1){
+      this.SelectedTimeSlot.OpenCustomers = false;
+    }
+    this._selectedTimeSlotIndex = -1;
+    this._selectedDayIndex = -1;
+    
+    if(this._selectCustomer!= null){
+      
+      this._selectCustomer = null;
+    }
+
+    this.navigateDays = (daysAdd==0) ? 0 : this.navigateDays + daysAdd;
+    this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
   }
 }
