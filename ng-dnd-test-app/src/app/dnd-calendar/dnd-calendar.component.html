@@ -1,3 +1,23 @@
+<div>
+  Filters and stuff
+</div>
+<div style="display: flex;border: 2px solid black;">
+    <div>Unscheduled:&nbsp;</div>
+    <div style="flex: 1;display: flex;background-color: lightslategray;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
+      <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 20px;">No Unscheduled jobs</div>
+      <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 20px;">
+          <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
+              <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
+                dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
+                <strong>&Xi;
+                  <span>{{customer.PostCode}}</span>
+                </strong>&nbsp;
+                <span>{{customer.DisplayName}} </span>
+              </div>
+            </div>
+      </div>
+    </div>
+</div>
 <div class="dnd-container">
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
     <div class="dnd-timeslot-details">
@@ -39,8 +59,8 @@
           </div>
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
             <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
-              dnd-draggable [dragEnabled]="true" [dragData]="customer">
-              <strong>&Xi;&#8227;
+              dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
+              <strong>&Xi;
                 <span>{{customer.PostCode}}</span>
               </strong>&nbsp;
               <span>{{customer.DisplayName}} </span>

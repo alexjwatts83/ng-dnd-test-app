@@ -11,6 +11,7 @@ import { DndDay } from '../models/dnd-day';
 
 export class DndCalendarComponent implements OnInit {
   Days: DndDay[];
+  UnschduledJobs: DndCustomer[] = [];
 
   _selectedTimeSlotIndex: number = -1;
   _selectedCustomerIndex: number = -1;
@@ -106,6 +107,51 @@ export class DndCalendarComponent implements OnInit {
     console.log(`droppedTimeslotIndex: ${droppedTimeslotIndex}`);
     console.log(`_selectedTimeSlotIndex: ${this._selectedTimeSlotIndex}`);
 
+    if(this.simpleDrop.dragData.fromUnscheduled){
+      console.log('from unscheduled');
+      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
+      let filterView = [];
+      let selectedSlotIndex = -1;
+      this.UnschduledJobs.forEach((element, index) => {
+        if (element.JobNumber === droppedJobNumber) {
+          selectedSlotIndex = index;
+        } else {
+          filterView.push(element);
+        }
+      });
+      // add to unscheduled
+      let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers .concat(this.UnschduledJobs[selectedSlotIndex]);
+      console.log("concat:", concat);
+      this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
+
+      // and remove from scheduled
+      this.UnschduledJobs = filterView;
+
+      return;
+    }
+    if(droppedDayIndex==-1 && droppedTimeslotIndex ==-1){
+      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
+      let filterView = [];
+      let selectedSlotIndex = -1;
+      this.SelectedTimeSlot.Customers.forEach((element, index) => {
+        if (element.JobNumber === droppedJobNumber) {
+          selectedSlotIndex = index;
+        } else {
+          filterView.push(element);
+        }
+      });
+      // add to unscheduled
+      let concat = this.UnschduledJobs.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
+      console.log("concat:", concat);
+      this.UnschduledJobs = concat;
+
+      // and remove from scheduled
+      this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
+
+      // maybe display modal
+      return;
+    }
+
     let droppedOnSameDay = droppedDayIndex === this._selectedDayIndex;
     let droppedOnSameTimeSlot = droppedTimeslotIndex === this._selectedTimeSlotIndex;
 
@@ -113,11 +159,7 @@ export class DndCalendarComponent implements OnInit {
       console.log('Dropped on same day and time slot, do nothing');
     }
     else {
-      // console.log(this.simpleDrop);
-      // console.log(this.simpleDrop.dragData);
-      // console.log(this.simpleDrop.dragData.JobNumber);
-      console.log('Dropped on different day or time slot, remove from selected slot');
-      let droppedJobNumber = this.simpleDrop.dragData.JobNumber
+      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
       let filterView = [];
       let selectedSlotIndex = -1;
       this.SelectedTimeSlot.Customers.forEach((element, index) => {
@@ -129,19 +171,12 @@ export class DndCalendarComponent implements OnInit {
       });
 
       console.log("selectedSlotIndex:", selectedSlotIndex);
-
-      console.log('Dropped on different day or time slot, add to dropped slot');
       let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
       console.log("concat:", concat);
       this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
-
       console.log("dropped customer:", this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers[selectedSlotIndex]);
-      let concat2 = this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers.splice(selectedSlotIndex, 1);
-      console.log("concat2:", concat2);
       console.log("filterView:", filterView);
       this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
-      // this.DroppedTimeSlot.Customers = concat;
-      // this.SelectedTimeSlot.Customers.splice(selectedSlotIndex, 1);
     }
   }
 
