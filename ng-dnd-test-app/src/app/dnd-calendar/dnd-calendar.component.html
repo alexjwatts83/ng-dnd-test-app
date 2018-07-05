@@ -13,13 +13,14 @@
     </div>
 
     <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
-      <div class="dnd-timeslot-times">
+      <div class="dnd-timeslot-times" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
         <div>
           {{timeslot.Time}}
         </div>
         <hr />
         <div>
-          [{{timeslot.TimeSlotsAllocated}}/{{timeslot.TimeSlotsTotal}}]
+          
+          [<span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
         </div>
       </div>
       <div style="flex: 2;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"

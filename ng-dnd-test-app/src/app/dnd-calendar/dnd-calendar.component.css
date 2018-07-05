@@ -131,15 +131,11 @@
     to {opacity: 1}
 }
 
-.flexrow {
-    display: flex;
-    flex-direction: row;
-  }
-  .flexcol {
-    display: flex;
-    flex-direction: column;
-  }
-  .item {
-    flex: 1;
-    background-color: blue;    /* <-- just for demonstration */
-  }
+.show-warning{
+    color:#1d1d1d;
+    background-color: #ffc40d;
+}
+
+.show-warning-red{
+    color:crimson;
+}
