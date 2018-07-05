@@ -347,7 +347,8 @@ export class DndCalendarComponent implements OnInit {
   createCustomer(startingPoint: number, suburb: string, postcode: string): DndCustomer {
     let firstName = this.FirstNames[(startingPoint + 1)];
     let lastName = this.LastNames[(startingPoint + 1)];
-    let cust = new DndCustomer(firstName, lastName, 'job ' + (startingPoint + 1), 'comment ' + (startingPoint + 1), 'link' + (startingPoint + 1), suburb, postcode);
+    const comment = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua';
+    let cust = new DndCustomer(firstName, lastName, 'job ' + (startingPoint + 1), comment, 'link' + (startingPoint + 1), suburb, postcode);
 
     return cust;
   }
