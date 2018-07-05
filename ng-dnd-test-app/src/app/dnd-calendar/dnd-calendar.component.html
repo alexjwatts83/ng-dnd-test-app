@@ -3,20 +3,20 @@
   <div>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div>Group By</div>
-      <input type="radio" value="Suburb" (click)="FilterBy = 'Suburb'" name="food" [(ngModel)]="model.FilterBy"> Suburb
-      <input type="radio" value="PostCode" (click)="FilterBy = 'PostCode'" name="food" [(ngModel)]="model.FilterBy"> PostCode
+      <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="food" [(ngModel)]="model.filterBy"> Suburb
+      <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="food" [(ngModel)]="model.filterBy"> PostCode
       <!-- <div>
         <pre>{{model | json}}</pre>
       </div> -->
     </form>
   </div>
 </div>
-<div *ngIf="ShowUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
+<div *ngIf="showUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
   <div>Unscheduled:&nbsp;</div>
   <div style="flex: 1;display: flex;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
-    <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;color: darkgrey">No Unscheduled jobs</div>
-    <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
-      <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
+    <div *ngIf="unschduledJobs.length ==0" style="padding-left: 10px;color: darkgrey">No Unscheduled jobs</div>
+    <div *ngIf="unschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
+      <div *ngFor="let customer of unschduledJobs; let customerIndex = index">
         <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
           (click)="toggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
           <strong>&Xi;
@@ -32,7 +32,7 @@
   </div>
 </div>
 <div class="dnd-container">
-  <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
+  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index">
     <div class="dnd-timeslot-details">
       <!-- <div class="flex-one">
         <div class="dnd-timeslot-details-detail">
@@ -60,7 +60,7 @@
         <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
           <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
         </div>
-        <div *ngFor="let suburb of timeslot.Customers | groupBy:FilterBy">
+        <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
           <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
             <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
           </div>

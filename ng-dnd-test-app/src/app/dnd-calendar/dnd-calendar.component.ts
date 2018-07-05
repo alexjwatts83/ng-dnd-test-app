@@ -17,10 +17,10 @@ export class DndCalendarComponent implements OnInit {
   private _selectedTimeSlotIndex: number = -1;
   private _selectedDayIndex: number = -1;
 
-  Days: DndDay[];
-  UnschduledJobs: DndCustomer[] = [];
-  ShowUnscheduled: boolean = false;
-  FilterBy: string = 'Suburb';
+  days: DndDay[];
+  unschduledJobs: DndCustomer[] = [];
+  showUnscheduled: boolean = false;
+  filterBy: string = 'Suburb';
   model: any = {};
   heroForm: any;
   simpleDrop: any = null;
@@ -39,7 +39,7 @@ export class DndCalendarComponent implements OnInit {
   }
   get SelectedDay(): DndDay {
     if (this._selectedDayIndex > -1) {
-      return this.Days[this._selectedDayIndex];
+      return this.days[this._selectedDayIndex];
     }
     return null;
   }
@@ -55,29 +55,29 @@ export class DndCalendarComponent implements OnInit {
 
   ngOnInit() {
     this.model = {
-      FilterBy: this.FilterBy
+      filterBy: this.filterBy
     };
 
-    this.Days = this.calendarDataService.getDays();
+    this.days = this.calendarDataService.getDays();
 
     let startingPoint = 41;
-    this.UnschduledJobs = [];
-    if (this.ShowUnscheduled) {
+    this.unschduledJobs = [];
+    if (this.showUnscheduled) {
       for (let j = 0; j < 5; j++) {
-        this.UnschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Gosford', '2250'));
+        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Gosford', '2250'));
         startingPoint++;
       }
       for (let j = 0; j < 5; j++) {
-        this.UnschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Erina', '2250'));
+        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Erina', '2250'));
         startingPoint++;
       }
       for (let j = 0; j < 5; j++) {
-        this.UnschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
+        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
         startingPoint++;
       }
     }
   }
-
+  //todo: refactor and move to service
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
     console.log('called transferDataSuccess');
     this.simpleDrop = $event;
@@ -91,7 +91,7 @@ export class DndCalendarComponent implements OnInit {
       let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
       let filterView = [];
       let selectedSlotIndex = -1;
-      this.UnschduledJobs.forEach((element, index) => {
+      this.unschduledJobs.forEach((element, index) => {
         if (element.JobNumber === droppedJobNumber) {
           selectedSlotIndex = index;
         } else {
@@ -99,12 +99,12 @@ export class DndCalendarComponent implements OnInit {
         }
       });
       // add to unscheduled
-      let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.UnschduledJobs[selectedSlotIndex]);
+      let concat = this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.unschduledJobs[selectedSlotIndex]);
       console.log("concat:", concat);
-      this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
+      this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
 
       // and remove from scheduled
-      this.UnschduledJobs = filterView;
+      this.unschduledJobs = filterView;
 
       return;
     }
@@ -120,12 +120,12 @@ export class DndCalendarComponent implements OnInit {
         }
       });
       // add to unscheduled
-      let concat = this.UnschduledJobs.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
+      let concat = this.unschduledJobs.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
       console.log("concat:", concat);
-      this.UnschduledJobs = concat;
+      this.unschduledJobs = concat;
 
       // and remove from scheduled
-      this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
+      this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
 
       // maybe display modal
       return;
@@ -150,12 +150,12 @@ export class DndCalendarComponent implements OnInit {
       });
 
       console.log("selectedSlotIndex:", selectedSlotIndex);
-      let concat = this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
+      let concat = this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
       console.log("concat:", concat);
-      this.Days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
-      console.log("dropped customer:", this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers[selectedSlotIndex]);
+      this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
+      console.log("dropped customer:", this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers[selectedSlotIndex]);
       console.log("filterView:", filterView);
-      this.Days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
+      this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
     }
   }
 
