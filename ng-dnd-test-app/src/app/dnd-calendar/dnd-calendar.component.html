@@ -10,7 +10,7 @@
         <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
           (click)="toggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
           <strong>&Xi;
-            <span>{{customer.PostCode}}</span>
+            <span>{{customer.Suburb}}</span>
           </strong>&nbsp;
           <span>{{customer.DisplayName}} </span>
         </div>
@@ -19,6 +19,9 @@
   </div>
 </div>
 <div class="dnd-container">
+  <div>
+    Designer 1
+  </div>
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
     <div class="dnd-timeslot-details">
       <div class="flex-one">
@@ -48,9 +51,9 @@
         <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
           <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
         </div>
-        <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
-          <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
-            <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
+        <div *ngFor="let suburb of timeslot.Customers | groupBy:'Suburb'">
+          <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
+            <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
           </div>
         </div>
         <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
@@ -62,7 +65,7 @@
             <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
               dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
               <strong>&Xi;
-                <span>{{customer.PostCode}}</span>
+                <span>{{customer.Suburb}}</span>
               </strong>&nbsp;
               <span>{{customer.DisplayName}} </span>
             </div>
@@ -86,8 +89,8 @@
         &nbsp;{{SelectedCustomer.DisplayName}}
       </div>
       <div>
-        <strong>Post Code:</strong>
-        &nbsp;{{SelectedCustomer.PostCode}}
+        <strong>Suburb:</strong>
+        &nbsp;{{SelectedCustomer.Suburb}}
       </div>
       <div>
         <strong>Lead:</strong>&nbsp;

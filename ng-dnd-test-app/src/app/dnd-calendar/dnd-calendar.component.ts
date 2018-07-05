@@ -45,13 +45,13 @@ export class DndCalendarComponent implements OnInit {
   }
 
   createDay(weekNumber: number, dayName: string, startingPoint: number): DndDay {
-    let cust1 = this.createCustomer(startingPoint + 0, '1000');
-    let cust2 = this.createCustomer(startingPoint + 1, '2000');
-    let cust3 = this.createCustomer(startingPoint + 2, '2000');
-    let cust4 = this.createCustomer(startingPoint + 3, '3000');
-    let cust5 = this.createCustomer(startingPoint + 4, '3000');
-    let cust6 = this.createCustomer(startingPoint + 5, '3000');
-    let cust7 = this.createCustomer(startingPoint + 6, '2000');
+    let cust1 = this.createCustomer(startingPoint + 0, 'Gosford');
+    let cust2 = this.createCustomer(startingPoint + 1, 'Erina');
+    let cust3 = this.createCustomer(startingPoint + 2, 'Erina');
+    let cust4 = this.createCustomer(startingPoint + 3, 'Newcastle');
+    let cust5 = this.createCustomer(startingPoint + 4, 'Newcastle');
+    let cust6 = this.createCustomer(startingPoint + 5, 'Newcastle');
+    let cust7 = this.createCustomer(startingPoint + 6, 'Erina');
 
     let timeslot1 = new DndTimeSlot('10am', 10, [cust1, cust2]);
     let timeslot2 = new DndTimeSlot('2pm', 5, [cust3, cust4, cust7]);
@@ -99,15 +99,15 @@ export class DndCalendarComponent implements OnInit {
     let startingPoint = 41;
     this.UnschduledJobs = [];
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Gosford'));
       startingPoint++;
     }
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Erina'));
       startingPoint++;
     }
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Newcastle'));
       startingPoint++;
     }
   }

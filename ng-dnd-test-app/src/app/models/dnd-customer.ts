@@ -3,7 +3,7 @@ export interface IDndCustomer {
     JobNumber: string;
     Comment: string;
     Link: string;
-    PostCode: string;
+    Suburb: string;
 }
 
 export class DndCustomer implements IDndCustomer {
@@ -11,12 +11,12 @@ export class DndCustomer implements IDndCustomer {
     JobNumber: string;
     Comment: string;
     Link: string;
-    PostCode: string;
-    constructor(displayName: string, jobnumber: string, comment: string, link: string, postCode: string) {
+    Suburb: string;
+    constructor(displayName: string, jobnumber: string, comment: string, link: string, suburb: string) {
         this.DisplayName = displayName;
         this.JobNumber = jobnumber;
         this.Comment = comment;
         this.Link = link;
-        this.PostCode = postCode;
+        this.Suburb = suburb;
     }
 }
