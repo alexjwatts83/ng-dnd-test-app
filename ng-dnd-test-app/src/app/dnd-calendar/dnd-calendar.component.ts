@@ -4,6 +4,7 @@ import { DndTimeSlot } from '../models/dnd-time-slot';
 import { DndDay } from '../models/dnd-day';
 // import { start } from 'repl';
 import { FormGroup, FormControl } from '@angular/forms';
+import { CalendarDataService } from '../services/calendar-data.service.service';
 
 @Component({
   selector: 'app-dnd-calendar',
@@ -15,7 +16,7 @@ export class DndCalendarComponent implements OnInit {
   Days: DndDay[];
   UnschduledJobs: DndCustomer[] = [];
   ShowUnscheduled: boolean = false;
-  FilterBy: string = 'PostCode';
+  FilterBy: string = 'Suburb';
   model: any = {};
   heroForm: any;
   LastNames: any[] = [
@@ -358,7 +359,7 @@ export class DndCalendarComponent implements OnInit {
     return cust;
   }
 
-  createDay(weekNumber: number, dayName: string, startingPoint: number, date: Date): DndDay {
+  createDay(startingPoint: number, date: Date): DndDay {
     let cust1 = this.createCustomer(startingPoint + 0, 'Gosford', '2250');
     let cust2 = this.createCustomer(startingPoint + 1, 'Erina', '2250');
     let cust3 = this.createCustomer(startingPoint + 2, 'Erina', '2250');
@@ -371,7 +372,7 @@ export class DndCalendarComponent implements OnInit {
     let timeslot2 = new DndTimeSlot('2pm', 5, [cust3, cust4, cust7]);
     let timeslot3 = new DndTimeSlot('7pm', 7, [cust5, cust6]);
 
-    let day = new DndDay(weekNumber, dayName, [timeslot1, timeslot2, timeslot3], date);
+    let day = new DndDay([timeslot1, timeslot2, timeslot3], date);
 
     return day;
   }
@@ -382,63 +383,39 @@ export class DndCalendarComponent implements OnInit {
       date.setHours(-24 * (day - 1));
     return date;
   }
+
   onSubmit() {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
   }
+
   ngOnInit() {
     this.model = {
       FilterBy: this.FilterBy
     };
-    //console.log(this.FirstNames);
-    let mockDays = [
-      {
-        name: 'MON',
-        startingPoint: 0
-      },
-      {
-        name: 'TUE',
-        startingPoint: 7
-      },
-      {
-        name: 'WED',
-        startingPoint: 14
-      },
-      {
-        name: 'THU',
-        startingPoint: 21
-      },
-      {
-        name: 'FRI',
-        startingPoint: 28
-      },
-      {
-        name: 'SAT',
-        startingPoint: 35
-      }
-    ];
 
     this.Days = [];
     let monday = this.getMonday(new Date());
-    for (let i = 0; i < mockDays.length; i++) {
-      let mockDay = mockDays[i];
+    for (let i = 0; i < 7; i++) {
       let date = new Date(monday);
       date.setDate(date.getDate() + i);
-      this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint, date));
+      this.Days.push(this.createDay(((i + 1) * 7), date));
     }
 
     let startingPoint = 41;
     this.UnschduledJobs = [];
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Gosford', '2250'));
-      startingPoint++;
-    }
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Erina', '2250'));
-      startingPoint++;
-    }
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
-      startingPoint++;
+    if(this.ShowUnscheduled){
+      for (let j = 0; j < 5; j++) {
+        this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Gosford', '2250'));
+        startingPoint++;
+      }
+      for (let j = 0; j < 5; j++) {
+        this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Erina', '2250'));
+        startingPoint++;
+      }
+      for (let j = 0; j < 5; j++) {
+        this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
+        startingPoint++;
+      }
     }
   }
 
