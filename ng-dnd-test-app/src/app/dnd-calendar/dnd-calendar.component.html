@@ -1,23 +1,22 @@
 <div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
-    <div>Filters:&nbsp;</div>
+  <div>Filters:&nbsp;</div>
 </div>
-<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
-    <div>Unscheduled:&nbsp;</div>
-    <div style="flex: 1;display: flex;background-color: #ffffff;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
-      <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;">No Unscheduled jobs</div>
-      <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
-          <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
-              <div class="draggle-customer" style="margin-left: 5px;"
-              title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customer)"
-                dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
-                <strong>&Xi;
-                  <span>{{customer.PostCode}}</span>
-                </strong>&nbsp;
-                <span>{{customer.DisplayName}} </span>
-              </div>
-            </div>
+<div style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
+  <div>Unscheduled:&nbsp;</div>
+  <div style="flex: 1;display: flex;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
+    <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;color: darkgrey">No Unscheduled jobs</div>
+    <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
+      <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
+        <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
+          (click)="ToggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
+          <strong>&Xi;
+            <span>{{customer.PostCode}}</span>
+          </strong>&nbsp;
+          <span>{{customer.DisplayName}} </span>
+        </div>
       </div>
     </div>
+  </div>
 </div>
 <div class="dnd-container">
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
@@ -39,17 +38,18 @@
         </div>
         <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
           <div>
-            [<span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
+            [
+            <span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
           </div>
         </div>
       </div>
       <div style="flex: 2;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
         class="dnd-timeslot-dropzone">
-        <div *ngIf="timeslot.Customers.length == 0"  style="display: flex;align-items: center;justify-items: center;height: 100%;">
+        <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
           <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
         </div>
         <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
-          <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
+          <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
             <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
           </div>
         </div>
@@ -75,8 +75,6 @@
 
 <!-- The Modal -->
 <div *ngIf="SelectedCustomer" id="myModal" class="modal">
-
-  <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close" (click)="closePoorMansModal()">&times;</span>
@@ -102,9 +100,5 @@
         </p>
       </div>
     </div>
-    <!-- <div class="modal-footer">
-        <h3>Modal Footer</h3>
-      </div> -->
   </div>
-
 </div>

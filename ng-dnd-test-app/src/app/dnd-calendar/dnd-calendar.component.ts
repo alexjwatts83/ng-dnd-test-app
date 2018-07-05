@@ -15,7 +15,6 @@ export class DndCalendarComponent implements OnInit {
 
   _selectCustomer: DndCustomer;
   _selectedTimeSlotIndex: number = -1;
-  //_selectedCustomerIndex: number = -1;
   _selectedDayIndex: number = -1;
 
   get SelectedTimeSlot(): DndTimeSlot {
@@ -97,21 +96,20 @@ export class DndCalendarComponent implements OnInit {
       this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint));
     }
 
-    //console.log(this.Days);
-    let startingPoint = 41;
-    this.UnschduledJobs = [];
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
-      startingPoint++;
-    }
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
-      startingPoint++;
-    }
-    for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
-      startingPoint++;
-    }
+    // let startingPoint = 41;
+    // this.UnschduledJobs = [];
+    // for (let j = 0; j < 5; j++) {
+    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
+    //   startingPoint++;
+    // }
+    // for (let j = 0; j < 5; j++) {
+    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
+    //   startingPoint++;
+    // }
+    // for (let j = 0; j < 5; j++) {
+    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
+    //   startingPoint++;
+    // }
   }
 
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
@@ -195,21 +193,7 @@ export class DndCalendarComponent implements OnInit {
     }
   }
 
-  TimeslotClicked(event: any, dayIndex: number, timeslotIndex: number) {
-    console.log(event);
-    // console.log(`timeslot.Time: ${timeslot.Time}`);
-    // console.log(`day.DayName: ${day.DayName}`);
-
-    // if (this._selectedCustomerIndex == -1) {
-    //   this._selectedTimeSlotIndex = timeslotIndex;
-    //   this._selectedDayIndex = dayIndex;
-    //   this._selectedCustomerIndex = -1;
-    //   console.log('day slot selected because empty');
-    //   return;
-    // }
-
-    // console.log(`SelectedDay.Time: ${this.SelectedTimeSlot.Time}`);
-    // console.log(`SelectedDay.DayName: ${this.SelectedDay.DayName}`);
+  timeslotClicked(event: any, dayIndex: number, timeslotIndex: number) {
     if (this._selectedDayIndex > -1) {
       this.SelectedTimeSlot.OpenCustomers = false;
     }
@@ -225,10 +209,7 @@ export class DndCalendarComponent implements OnInit {
     this.SelectedTimeSlot.OpenCustomers = true;
   }
 
-  ToggleCustomerClicked(event: any, customer:DndCustomer) {
-    // console.log(event);
-    // console.log(customer);
-    //this._selectedCustomerIndex = customerIndex;
+  toggleCustomerClicked(event: any, customer:DndCustomer) {
     this._selectCustomer = customer;
   }
 
