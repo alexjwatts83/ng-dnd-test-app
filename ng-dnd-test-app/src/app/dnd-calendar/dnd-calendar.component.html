@@ -3,8 +3,7 @@
     <div class="dnd-timeslot-details">
       <div class="flex-one">
         <div class="dnd-timeslot-details-detail">
-          <!-- Wk {{day.WeekNumber}} -->
-          &nbsp;
+          Wk {{day.WeekNumber}} &nbsp;
         </div>
       </div>
       <div class="flex-one">
@@ -13,14 +12,14 @@
     </div>
 
     <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
-      <div class="dnd-timeslot-times" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
-        <div>
-          {{timeslot.Time}}
+      <div class="dnd-timeslot-times" style="display: flex;flex-wrap: wrap;align-items: center;justify-content: center;" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
+        <div style="border-bottom: 0px solid #1d1d1d;display: flex;justify-content: center;">
+          <div>{{timeslot.Time}}</div>
         </div>
-        <hr />
-        <div>
-          
-          [<span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
+        <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
+          <div>
+            [<span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
+          </div>
         </div>
       </div>
       <div style="flex: 2;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
@@ -31,8 +30,9 @@
           </div>
         </div>
         <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
-          <div>&nbsp;
-            <span title="close post codes" class="close" (click)="timeslot.OpenCustomers = false" style="color: #1d1d1d;">&times;</span>
+          <div style="display: flex;align-items: center;">
+            <span style="flex: 1;">&nbsp;Summary</span>
+            <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" style="color: #1d1d1d;font-size: 28px;font-weight: bold;">&times;</span>
           </div>
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
             <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
