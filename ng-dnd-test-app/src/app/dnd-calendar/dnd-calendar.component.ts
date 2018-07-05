@@ -30,6 +30,7 @@ export class DndCalendarComponent implements OnInit {
     -14, -7, -1, 0, 1, 7, 14
   ];
   takeDaysOptions: number[] = [7, 14];
+  showConfirmationModal:boolean = false;
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -215,5 +216,30 @@ export class DndCalendarComponent implements OnInit {
     }
 
     this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
+  }
+
+  action: string;
+  
+  saveChanges(){
+    this.action = 'Save';
+    this.showConfirmationModal=true;
+  }
+
+  discardChanges(){
+    this.action = 'Discard';
+    this.showConfirmationModal=true;
+  }
+
+  closePoorMansModal2(){
+    this.showConfirmationModal=false;
+  }
+
+  cancelClicked(){
+    this.closePoorMansModal2();
+  }
+
+  okClicked(){
+    this.closePoorMansModal2();
+    this.getDays();
   }
 }

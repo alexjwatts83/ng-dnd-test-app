@@ -9,6 +9,10 @@
         <pre>{{model | json}}</pre>
       </div> -->
     </form>
+    <div style="display: flex">
+        <div (click)="saveChanges()" class="mock-buttons">Save</div>
+        <div (click)="discardChanges()" class="mock-buttons">Discard</div>  
+    </div>
   </div>
 </div>
 <div *ngIf="showUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
@@ -135,6 +139,24 @@
         <div>{{SelectedCustomer.Designer}}</div>
         <div>Comments:</div>
         <div>{{SelectedCustomer.Comment}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showConfirmationModal" id="myModal2" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="closePoorMansModal2()">&times;</span>
+      <h2>{{action}} Changes</h2>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to {{action}} changes?</p>
+    </div>
+    <div class="modal-footer">
+      <div style="display: flex;justify-content: flex-end;">
+          <div (click)="okClicked()" class="mock-buttons">OK</div>
+          <div (click)="cancelClicked()" class="mock-buttons">Cancel</div>
       </div>
     </div>
   </div>

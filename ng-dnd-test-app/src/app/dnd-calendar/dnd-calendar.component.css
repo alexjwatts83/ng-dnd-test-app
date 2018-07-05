@@ -1,75 +1,114 @@
-.dnd-container{
-    width: 100%;height: 100%;background-color: #ffffff;display: flex;
+.dnd-container {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
-.dnd-time-slot{
-    display: flex;background-color: #ffffff;border-top: 1px solid #1d1d1d;
+
+.dnd-time-slot {
+    display: flex;
+    background-color: #ffffff;
+    border-top: 1px solid #1d1d1d;
     margin-bottom: 10px;
 }
-.dnd-day{
-    border-left: 1px dashed #1d1d1d;flex: 1;margin: auto;
+
+.dnd-day {
+    border-left: 1px dashed #1d1d1d;
+    flex: 1;
+    margin: auto;
     padding: 0px 5px;
     align-self: flex-start;
     flex-basis: 12%;
     /* width: 205px; */
 }
-.dnd-timeslot-details{
-    display: flex;background-color: #ffffff;
+
+.dnd-timeslot-details {
+    display: flex;
+    background-color: #ffffff;
 }
-.dnd-timeslot-details-detail{
-    font-size: 20pt;margin: auto;
+
+.dnd-timeslot-details-detail {
+    font-size: 20pt;
+    margin: auto;
 }
-.dnd-timeslot-times{
-    flex: 1;border: 0px solid blue;background-color: #101010;color: #ffffff
+
+.dnd-timeslot-times {
+    flex: 1;
+    border: 0px solid blue;
+    background-color: #101010;
+    color: #ffffff
 }
-.dnd-timeslot-dropzone{
-    border: 0px solid red;background-color: #ffffff
+
+.dnd-timeslot-dropzone {
+    border: 0px solid red;
+    background-color: #ffffff
 }
-.dnd-timeslot-dropzone-item{
-    font-size: 12pt;position: relative;border: 0px solid #1d1d1d;
+
+.dnd-timeslot-dropzone-item {
+    font-size: 12pt;
+    position: relative;
+    border: 0px solid #1d1d1d;
     /* border-radius: 5px; */
     padding: 5px;
     /* background-color: #2b5797; */
     border-bottom: 1px dashed #1d1d1d;
 }
-.flex-one{
+
+.flex-one {
     flex: 1;
 }
-.draggle-customer{
+
+.draggle-customer {
     /* font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d; */
     background: #2d89ef;
     margin: 5px 0px;
     padding: 5px;
     color: #eff4ff;
 }
-.dnd-timeslot-selected,.dnd-customer-selected{
+
+.dnd-timeslot-selected, .dnd-customer-selected {
     border: 2px solid #1d1d1d;
-    width: 200px;margin: auto;
+    width: 200px;
+    margin: auto;
     padding: 5px;
     /* cursor: pointer; */
     background-color: #2d89ef;
     color: white;
     position: relative;
 }
-.dnd-customer-selected a{
+
+.dnd-customer-selected a {
     color: crimson;
 }
+
 /* poor mans modal */
+
 /* The Modal (background) */
+
 .modal {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    -webkit-animation-name: fadeIn;
+    /* Fade in the background */
     -webkit-animation-duration: 0.4s;
     animation-name: fadeIn;
     animation-duration: 0.4s
@@ -78,23 +117,24 @@
 .modal {
     text-align: center;
     padding: 0!important;
-  }
-  
-  .modal:before {
+}
+
+.modal:before {
     content: '';
     display: inline-block;
     height: 100%;
     vertical-align: middle;
     margin-right: -4px;
-  }
-  
-  .modal-dialog {
+}
+
+.modal-dialog {
     display: inline-block;
     text-align: left;
     vertical-align: middle;
-  }
+}
 
 /* Modal Content */
+
 .modal-content {
     /* position: fixed;
     bottom: 0; */
@@ -110,6 +150,7 @@
 }
 
 /* The Close Button */
+
 .close {
     color: white;
     float: right;
@@ -117,8 +158,7 @@
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
@@ -130,62 +170,96 @@
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px;
+}
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: #2d89ef;
+    color: #1d1d1d;
 }
 
 /* Add Animation */
+
 @-webkit-keyframes slideIn {
-    from {bottom: -300px; opacity: 0} 
-    to {bottom: 0; opacity: 1}
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
 }
 
 @keyframes slideIn {
-    from {bottom: -300px; opacity: 0}
-    to {bottom: 0; opacity: 1}
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
 }
 
 @-webkit-keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
 @keyframes fadeIn {
-    from {opacity: 0} 
-    to {opacity: 1}
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
 }
 
-.show-warning{
-    color:#1d1d1d;
+.show-warning {
+    color: #1d1d1d;
     background-color: #ffc40d;
 }
 
-.show-warning-red{
-    color:crimson;
+.show-warning-red {
+    color: crimson;
 }
 
 .box {
     display: flex;
     flex-wrap: wrap;
 }
+
 .box>* {
     flex: 1 1 150px;
 }
-.box>*:nth-child(odd)
-{
+
+.box>*:nth-child(odd) {
     flex: 1 1 90px;
     font-weight: bold;
 }
 
-.dnd-nav{
+.dnd-nav {
     display: flex;
 }
-.dnd-nav>*{
+
+.dnd-nav>* {
     flex: 1;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.mock-buttons {
     background-color: lightgray;
     padding: 5px;
     margin: 5px;
