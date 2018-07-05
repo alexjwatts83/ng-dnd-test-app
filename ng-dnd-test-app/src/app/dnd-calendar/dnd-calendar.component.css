@@ -2,7 +2,7 @@
     width: 100%;height: 100%;background-color: #ffffff;display: flex;align-items: flex-start;
 }
 .dnd-time-slot{
-    display: flex;background-color: lightblue;border-top: 1px solid #1d1d1d;
+    display: flex;background-color: #ffffff;border-top: 1px solid #1d1d1d;
     margin-bottom: 10px;
 }
 .dnd-day{
@@ -32,7 +32,10 @@
     flex: 1;
 }
 .draggle-customer{
-    font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d;
+    /* font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d; */
+    background: #2d89ef;
+    margin: 5px 0px;
+    padding: 5px;
 }
 .dnd-timeslot-selected,.dnd-customer-selected{
     border: 2px solid #1d1d1d;

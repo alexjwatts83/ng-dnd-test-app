@@ -17,19 +17,22 @@
         <div>
           {{timeslot.Time}}
         </div>
+        <hr />
         <div>
           [{{timeslot.TimeSlotsAllocated}}/{{timeslot.TimeSlotsTotal}}]
         </div>
       </div>
       <div style="flex: 2;">
-        <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)" class="dnd-timeslot-dropzone">
+        <div dnd-droppable 
+        (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)" 
+        class="dnd-timeslot-dropzone">
           <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
             <div class="dnd-timeslot-dropzone-item" title="Some details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
               <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
             </div>
           </div>
         </div>
-        <div *ngIf="timeslot.OpenCustomers">
+        <div *ngIf="timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
             <div class="draggle-customer" title="Some Customer details" (click)="ToggleCustomerClicked($event, customerIndex)" dnd-draggable
               [dragEnabled]="true" [dragData]="customer">
@@ -37,7 +40,6 @@
                 <span>{{customer.PostCode}}</span>
               </strong>&nbsp;
               <span>{{customer.DisplayName}} </span>
-
             </div>
           </div>
         </div>
