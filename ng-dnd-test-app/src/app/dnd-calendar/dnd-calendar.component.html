@@ -22,19 +22,22 @@
           [{{timeslot.TimeSlotsAllocated}}/{{timeslot.TimeSlotsTotal}}]
         </div>
       </div>
-      <div style="flex: 2;">
+      <div style="flex: 2;min-height: 20px;">
         <div dnd-droppable 
         (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)" 
-        class="dnd-timeslot-dropzone">
+        class="dnd-timeslot-dropzone" style="background: pink;">
           <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
-            <div class="dnd-timeslot-dropzone-item" title="Some details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
+            <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
               <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
             </div>
           </div>
         </div>
-        <div *ngIf="timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
+        <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
+          <div>&nbsp; <span title="close post codes" class="close" (click)="timeslot.OpenCustomers = false" style="color: #1d1d1d;">&times;</span></div>
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
-            <div class="draggle-customer" title="Some Customer details" (click)="ToggleCustomerClicked($event, customerIndex)" dnd-draggable
+            <div class="draggle-customer" 
+            title="Click to view '{{customer.DisplayName}}' details, drag to another time slot" 
+            (click)="ToggleCustomerClicked($event, customerIndex)" dnd-draggable
               [dragEnabled]="true" [dragData]="customer">
               <strong>
                 <span>{{customer.PostCode}}</span>
