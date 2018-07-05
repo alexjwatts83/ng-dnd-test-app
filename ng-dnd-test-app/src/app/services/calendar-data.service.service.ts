@@ -26,7 +26,7 @@ export class CalendarDataService {
   public createCustomer(startingPoint: number, suburb: string, postcode: string): DndCustomer {
     let firstName = this.mockNameService.firstNames[(startingPoint + 1)];
     let lastName = this.mockNameService.lastNames[(startingPoint + 1)];
-    let showRoom = this.mockNameService.getShowroom();
+    let showRoom = this.mockNameService.getShowroom(suburb);
     let consultant = this.mockNameService.getConsultant();
     let designer = this.mockNameService.getDesigner();
     let dateAppointed = new Date();

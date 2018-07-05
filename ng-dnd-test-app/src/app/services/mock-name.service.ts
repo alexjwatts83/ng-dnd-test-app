@@ -310,64 +310,108 @@ export class MockNameService {
     'Mark'
   ];
 
-  private _showRooms: string[] = [
-    'Freedom Newcastle',
-    'Freedom Erina',
-    'Freedom Gosford',
-    'Kinsman Newcastle',
-    'Kinsman Erina',
-    'Kinsman Gosford',
+  // private _showRooms: string[] = [
+  //   'Freedom Newcastle',
+  //   'Freedom Erina',
+  //   'Freedom Gosford',
+  //   'Kinsman Newcastle',
+  //   'Kinsman Erina',
+  //   'Kinsman Gosford',
+  // ];
+  private _brands: string[] = [
+    'Kinsman',
+    'Freedom',
+    'Wholesale',
+    'Good Guys'
   ];
-
+  private _suburbs: any[] = [
+    {
+      suburb: 'Gosford',
+      postcode: '2250',
+      showrooms: [],
+      lastIndexUsed: -1
+    },
+    {
+      suburb: 'Erina',
+      postcode: '2250',
+      showrooms: [],
+      lastIndexUsed: -1
+    },
+    {
+      suburb: 'Newcastle',
+      postcode: '2300',
+      showrooms: [],
+      lastIndexUsed: -1
+    },
+    {
+      suburb: 'Maitland',
+      postcode: '2200',
+      showrooms: [],
+      lastIndexUsed: -1
+    }
+  ]
   private _designers: string[];
   private _consultants: string[];
 
-  private _lastShowroomIndex:number;
-  private _lastDesignerIndex:number;
-  private _lastConsultantIndex:number;
+  private _lastShowroomIndex: number;
+  private _lastDesignerIndex: number;
+  private _lastConsultantIndex: number;
 
-  constructor() { 
+  constructor() {
     this._lastShowroomIndex = -1;
     this._lastDesignerIndex = -1;
     this._lastConsultantIndex = -1;
     this._designers = [];
     this._consultants = [];
-console.log('stuff');
-    for(let i = 1; i <= 10; i++){
+    for (let i = 1; i <= 10; i++) {
       this._designers.push('Designer ' + i);
       this._consultants.push('Consultant ' + i);
     }
-  }
-
-  getShowroom():string{
-    this._lastShowroomIndex = this._lastShowroomIndex+1;
-    if(this._lastShowroomIndex == this._showRooms.length){
-      this._lastShowroomIndex = 0;
+    for (let j = 0; j < this._suburbs.length; j++) {
+      for (let i = 0; i < this._brands.length; i++) {
+        let suburb = this._suburbs[j].suburb;
+        let brand = this._brands[j];
+        this._suburbs[j].showrooms.push(brand + ' ' + suburb);
+      }
     }
-    
-    return this._showRooms[this._lastShowroomIndex];
+
   }
 
-  getDesigner():string{
-    this._lastDesignerIndex = this._lastDesignerIndex+1;
-    if(this._lastDesignerIndex == this._designers.length){
+  getShowroom(suburbName: string): string {
+    let suburbIndex = this._suburbs.findIndex(x => x.suburb == suburbName);
+    this._suburbs[suburbIndex].lastIndexUsed = this._suburbs[suburbIndex].lastIndexUsed + 1;
+    if (this._suburbs[suburbIndex].lastIndexUsed == this._suburbs[suburbIndex].showrooms.length) {
+      this._suburbs[suburbIndex].lastIndexUsed = 0;
+    }
+    // this._lastShowroomIndex = this._lastShowroomIndex + 1;
+    // if (this._lastShowroomIndex == this._showRooms.length) {
+    //   this._lastShowroomIndex = 0;
+    // }
+
+    // return this._showRooms[this._lastShowroomIndex];
+    return this._suburbs[suburbIndex].showrooms[this._suburbs[suburbIndex].lastIndexUsed];
+  }
+
+  getDesigner(): string {
+    this._lastDesignerIndex = this._lastDesignerIndex + 1;
+    if (this._lastDesignerIndex == this._designers.length) {
       this._lastDesignerIndex = 0;
     }
-    
+
     return this._designers[this._lastDesignerIndex];
   }
 
-  getConsultant():string{
-    this._lastConsultantIndex = this._lastConsultantIndex+1;
-    if(this._lastConsultantIndex == this._consultants.length){
+  getConsultant(): string {
+    this._lastConsultantIndex = this._lastConsultantIndex + 1;
+    if (this._lastConsultantIndex == this._consultants.length) {
       this._lastConsultantIndex = 0;
     }
-    
+
     return this._consultants[this._lastConsultantIndex];
   }
 
-  createUnscheduledJobs():void{
-        //   for (let j = 0; j < 5; j++) {
+  createUnscheduledJobs(): void {
+    //   for (let j = 0; j < 5; j++) {
     //     this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Gosford', '2250'));
     //     startingPoint++;
     //   }
