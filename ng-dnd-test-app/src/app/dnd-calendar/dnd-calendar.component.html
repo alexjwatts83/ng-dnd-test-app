@@ -1,3 +1,61 @@
-<p>
-  dnd-calendar works!
-</p>
+<div class="dnd-container">
+  <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
+    <div class="dnd-timeslot-details">
+      <div class="flex-one">
+        <div class="dnd-timeslot-details-detail">
+          <!-- Wk {{day.WeekNumber}} -->
+          &nbsp;
+        </div>
+      </div>
+      <div class="flex-one">
+        <div class="dnd-timeslot-details-detail">{{day.DayName}}</div>
+      </div>
+    </div>
+
+    <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
+      <div class="dnd-timeslot-times">
+        <div>
+          {{timeslot.Time}}
+        </div>
+        <div>
+          [{{timeslot.TimeSlotsAllocated}}/{{timeslot.TimeSlotsTotal}}]
+        </div>
+      </div>
+      <div style="flex: 2;">
+        <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)" class="dnd-timeslot-dropzone">
+          <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
+            <div class="dnd-timeslot-dropzone-item" title="Some details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
+              <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="timeslot.OpenCustomers">
+          <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
+            <div class="draggle-customer" title="Some Customer details" (click)="ToggleCustomerClicked($event, customerIndex)" dnd-draggable
+              [dragEnabled]="true" [dragData]="customer">
+              <strong>
+                <span>{{customer.PostCode}}</span>
+              </strong>&nbsp;
+              <span>{{customer.DisplayName}} </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="SelectedCustomer" class="dnd-customer-selected">
+    <p>
+      <strong>Name:</strong>{{SelectedCustomer.DisplayName}}</p>
+    <p>
+      <strong>Job Number:</strong>{{SelectedCustomer.JobNumber}}</p>
+    <p>
+      <strong>Post Code:</strong>{{SelectedCustomer.PostCode}}</p>
+    <p>
+      <strong>Lead:</strong>
+      <a href="{{SelectedCustomer.Link}}">Link</a>
+    </p>
+    <p>
+      <strong>Comments:</strong>{{SelectedCustomer.Comment}}</p>
+  </div>
+</div>

@@ -17,6 +17,8 @@ export class DndTimeSlot implements IDndTimeSlot {
     Time: string;
     Customers: DndCustomer[];
     OpenCustomers: boolean;
+    TimeSlotsTotal: number;
+    
     get TimeSlotsAllocated(): number {
         return this.Customers.length;
     }
@@ -43,7 +45,7 @@ export class DndTimeSlot implements IDndTimeSlot {
         });
         return postCodeDisplay;
     }
-    TimeSlotsTotal: number;
+    
     constructor(time: string, timeSlotsTotal: number, customers: DndCustomer[]) {
         this.Time = time;
         this.Customers = customers;

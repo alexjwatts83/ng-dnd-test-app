@@ -1,0 +1,48 @@
+.dnd-container{
+    width: 100%;height: 100%;background-color: #ffffff;display: flex;align-items: flex-start;
+}
+.dnd-time-slot{
+    display: flex;background-color: lightblue;border-top: 1px solid #1d1d1d;
+    margin-bottom: 10px;
+}
+.dnd-day{
+    border-left: 1px dashed #1d1d1d;flex: 1;margin: auto;
+    padding: 0px 5px;;
+}
+.dnd-timeslot-details{
+    display: flex;background-color: #ffffff;
+}
+.dnd-timeslot-details-detail{
+    font-size: 20pt;margin: auto;
+}
+.dnd-timeslot-times{
+    flex: 1;border: 0px solid blue;background-color: #2d89ef;color: #ffffff
+}
+.dnd-timeslot-dropzone{
+    border: 0px solid red;background-color: #ffffff
+}
+.dnd-timeslot-dropzone-item{
+    font-size: 14pt;cursor: pointer;position: relative;border: 0px solid #1d1d1d;
+    /* border-radius: 5px; */
+    padding: 5px;
+    /* background-color: #2b5797; */
+    border-bottom: 1px dashed #1d1d1d;
+}
+.flex-one{
+    flex: 1;
+}
+.draggle-customer{
+    font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d;
+}
+.dnd-timeslot-selected,.dnd-customer-selected{
+    border: 2px solid #1d1d1d;
+    width: 200px;margin: auto;
+    padding: 5px;
+    /* cursor: pointer; */
+    background-color: #2d89ef;
+    color: white;
+    position: relative;
+}
+.dnd-customer-selected a{
+    color: crimson;
+}
