@@ -62,20 +62,8 @@ export class DndCalendarComponent implements OnInit {
 
     let startingPoint = 41;
     this.unschduledJobs = [];
-    if (this.showUnscheduled) {
-      for (let j = 0; j < 5; j++) {
-        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Gosford', '2250'));
-        startingPoint++;
-      }
-      for (let j = 0; j < 5; j++) {
-        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Erina', '2250'));
-        startingPoint++;
-      }
-      for (let j = 0; j < 5; j++) {
-        this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
-        startingPoint++;
-      }
-    }
+    // if (this.showUnscheduled) {
+    // }
   }
   //todo: refactor and move to service
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {

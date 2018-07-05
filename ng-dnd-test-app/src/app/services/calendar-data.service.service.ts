@@ -24,10 +24,15 @@ export class CalendarDataService {
   }
 
   public createCustomer(startingPoint: number, suburb: string, postcode: string): DndCustomer {
-    let firstName = this.mockNameService.FirstNames[(startingPoint + 1)];
-    let lastName = this.mockNameService.LastNames[(startingPoint + 1)];
+    let firstName = this.mockNameService.firstNames[(startingPoint + 1)];
+    let lastName = this.mockNameService.lastNames[(startingPoint + 1)];
+    let showRoom = this.mockNameService.getShowroom();
+    let consultant = this.mockNameService.getConsultant();
+    let designer = this.mockNameService.getDesigner();
+    let dateAppointed = new Date();
     const comment = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua';
-    let cust = new DndCustomer(firstName, lastName, 'job ' + (startingPoint + 1), comment, 'link' + (startingPoint + 1), suburb, postcode);
+    let cust = new DndCustomer(firstName, lastName, 'job ' + (startingPoint + 1), comment, 'link' + (startingPoint + 1), suburb, postcode,'lead ' + (startingPoint + 1)
+    ,showRoom,consultant,dateAppointed,designer);
 
     return cust;
   }

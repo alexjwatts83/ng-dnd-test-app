@@ -97,6 +97,14 @@
     </div>
     <div class="modal-body">
       <div>
+        <strong>Lead Number:</strong>
+        &nbsp;{{SelectedCustomer.LeadNumber}}
+      </div>
+      <div>
+        <strong>Showroom:</strong>
+        &nbsp;{{SelectedCustomer.Showroom}}
+      </div>
+      <div>
         <strong>Name:</strong>
         &nbsp;{{SelectedCustomer.DisplayName}}
       </div>
@@ -109,12 +117,24 @@
         &nbsp;{{SelectedCustomer.PostCode}}
       </div>
       <div>
+        <strong>Consultant:</strong>
+        &nbsp;{{SelectedCustomer.Consultant}}
+      </div>
+      <div>
+        <strong>Date:</strong>
+        &nbsp;{{SelectedCustomer.AppointmentDate | date:'dd/MM/yyyy hh:mm a'}}
+      </div>
+      <div>
+          <strong>Designer:</strong>
+          &nbsp;{{SelectedCustomer.Designer}}
+        </div>
+      <div>
         <strong>Lead:</strong>&nbsp;
         <a href="{{SelectedCustomer.Link}}">Link</a>
       </div>
       <div>
         <strong>Comments:</strong>
-        <div style="width: 200px;text-align: justify;">
+        <div style="width: 300px;text-align: justify;">
           {{SelectedCustomer.Comment}}
         </div>
       </div>

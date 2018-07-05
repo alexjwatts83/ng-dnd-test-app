@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MockNameService {
-  LastNames: any[] = [
+  lastNames: any[] = [
     'Smith',
     'Jones',
     'Brown',
@@ -107,7 +107,7 @@ export class MockNameService {
     'Colling'
   ];
 
-  FirstNames: any[] = [
+  firstNames: any[] = [
     'Emily',
     'Sarah',
     'Jessica',
@@ -309,6 +309,75 @@ export class MockNameService {
     'Stewart',
     'Mark'
   ];
-constructor() { }
 
+  private _showRooms: string[] = [
+    'Freedom Newcastle',
+    'Freedom Erina',
+    'Freedom Gosford',
+    'Kinsman Newcastle',
+    'Kinsman Erina',
+    'Kinsman Gosford',
+  ];
+
+  private _designers: string[];
+  private _consultants: string[];
+
+  private _lastShowroomIndex:number;
+  private _lastDesignerIndex:number;
+  private _lastConsultantIndex:number;
+
+  constructor() { 
+    this._lastShowroomIndex = -1;
+    this._lastDesignerIndex = -1;
+    this._lastConsultantIndex = -1;
+    this._designers = [];
+    this._consultants = [];
+console.log('stuff');
+    for(let i = 1; i <= 10; i++){
+      this._designers.push('Designer ' + i);
+      this._consultants.push('Consultant ' + i);
+    }
+  }
+
+  getShowroom():string{
+    this._lastShowroomIndex = this._lastShowroomIndex+1;
+    if(this._lastShowroomIndex == this._showRooms.length){
+      this._lastShowroomIndex = 0;
+    }
+    
+    return this._showRooms[this._lastShowroomIndex];
+  }
+
+  getDesigner():string{
+    this._lastDesignerIndex = this._lastDesignerIndex+1;
+    if(this._lastDesignerIndex == this._designers.length){
+      this._lastDesignerIndex = 0;
+    }
+    
+    return this._designers[this._lastDesignerIndex];
+  }
+
+  getConsultant():string{
+    this._lastConsultantIndex = this._lastConsultantIndex+1;
+    if(this._lastConsultantIndex == this._consultants.length){
+      this._lastConsultantIndex = 0;
+    }
+    
+    return this._consultants[this._lastConsultantIndex];
+  }
+
+  createUnscheduledJobs():void{
+        //   for (let j = 0; j < 5; j++) {
+    //     this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Gosford', '2250'));
+    //     startingPoint++;
+    //   }
+    //   for (let j = 0; j < 5; j++) {
+    //     this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Erina', '2250'));
+    //     startingPoint++;
+    //   }
+    //   for (let j = 0; j < 5; j++) {
+    //     this.unschduledJobs.push(this.calendarDataService.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
+    //     startingPoint++;
+    //   }
+  }
 }
