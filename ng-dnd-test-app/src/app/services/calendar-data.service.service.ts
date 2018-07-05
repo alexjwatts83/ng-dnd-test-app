@@ -45,10 +45,9 @@ export class CalendarDataService {
     let cust5 = this.createCustomer(startingPoint + 4, 'Newcastle', '2300');
     let cust6 = this.createCustomer(startingPoint + 5, 'Newcastle', '2300');
     let cust7 = this.createCustomer(startingPoint + 6, 'Erina', '2250');
-    let cust8 = this.createCustomer(startingPoint + 6, 'Maitland', '2200');
+    let cust8 = this.createCustomer(startingPoint + 7, 'Maitland', '2200');
 
-
-    let timeslot1 = new DndTimeSlot('10am', 10, [cust1, cust2]);
+    let timeslot1 = new DndTimeSlot('10am', 3, [cust1, cust2]);
     let timeslot2 = new DndTimeSlot('2pm', 5, [cust3, cust4, cust7,cust8]);
     let timeslot3 = new DndTimeSlot('7pm', 7, [cust5, cust6]);
 

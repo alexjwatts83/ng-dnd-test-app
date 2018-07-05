@@ -96,47 +96,27 @@
       <h2>{{SelectedCustomer.JobNumber}}</h2>
     </div>
     <div class="modal-body">
-      <div>
-        <strong>Lead Number:</strong>
-        &nbsp;{{SelectedCustomer.LeadNumber}}
-      </div>
-      <div>
-        <strong>Showroom:</strong>
-        &nbsp;{{SelectedCustomer.Showroom}}
-      </div>
-      <div>
-        <strong>Name:</strong>
-        &nbsp;{{SelectedCustomer.DisplayName}}
-      </div>
-      <div>
-        <strong>Suburb:</strong>
-        &nbsp;{{SelectedCustomer.Suburb}}
-      </div>
-      <div>
-        <strong>PostCode:</strong>
-        &nbsp;{{SelectedCustomer.PostCode}}
-      </div>
-      <div>
-        <strong>Consultant:</strong>
-        &nbsp;{{SelectedCustomer.Consultant}}
-      </div>
-      <div>
-        <strong>Date:</strong>
-        &nbsp;{{SelectedCustomer.AppointmentDate | date:'dd/MM/yyyy hh:mm a'}}
-      </div>
-      <div>
-        <strong>Designer:</strong>
-        &nbsp;{{SelectedCustomer.Designer}}
-      </div>
-      <div>
-        <strong>Lead:</strong>&nbsp;
-        <a href="{{SelectedCustomer.Link}}">Link</a>
-      </div>
-      <div>
-        <strong>Comments:</strong>
-        <div style="width: 300px;text-align: justify;">
-          {{SelectedCustomer.Comment}}
+      <div class="box" style="width: 300px;">
+        <div>Lead Number:</div>
+        <div>
+          <a href="{{SelectedCustomer.Link}}">{{SelectedCustomer.LeadNumber}}</a>
         </div>
+        <div>Showroom:</div>
+        <div>{{SelectedCustomer.Showroom}}</div>
+        <div>Name:</div>
+        <div>{{SelectedCustomer.DisplayName}}</div>
+        <div>Suburb:</div>
+        <div>{{SelectedCustomer.Suburb}}</div>
+        <div>PostCode:</div>
+        <div>{{SelectedCustomer.PostCode}}</div>
+        <div>Consultant:</div>
+        <div>{{SelectedCustomer.Consultant}}</div>
+        <div>Date:</div>
+        <div>{{SelectedCustomer.AppointmentDate | date:'dd/MM/yyyy hh:mm a'}}</div>
+        <div>Designer:</div>
+        <div>{{SelectedCustomer.Designer}}</div>
+        <div>Comments:</div>
+        <div>{{SelectedCustomer.Comment}}</div>
       </div>
     </div>
   </div>

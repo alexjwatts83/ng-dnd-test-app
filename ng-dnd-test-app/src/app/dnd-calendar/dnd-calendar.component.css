@@ -164,3 +164,16 @@
 .show-warning-red{
     color:crimson;
 }
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+.box>* {
+    flex: 1 1 150px;
+}
+.box>*:nth-child(odd)
+{
+    flex: 1 1 90px;
+    font-weight: bold;
+}
