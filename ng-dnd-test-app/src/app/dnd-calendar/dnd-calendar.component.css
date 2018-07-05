@@ -1,5 +1,7 @@
 .dnd-container{
-    width: 100%;height: 100%;background-color: #ffffff;display: flex;align-items: flex-start;
+    width: 100%;height: 100%;background-color: #ffffff;display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .dnd-time-slot{
     display: flex;background-color: #ffffff;border-top: 1px solid #1d1d1d;
@@ -7,7 +9,8 @@
 }
 .dnd-day{
     border-left: 1px dashed #1d1d1d;flex: 1;margin: auto;
-    padding: 0px 5px;;
+    padding: 0px 5px;
+    align-self: flex-start;
 }
 .dnd-timeslot-details{
     display: flex;background-color: #ffffff;

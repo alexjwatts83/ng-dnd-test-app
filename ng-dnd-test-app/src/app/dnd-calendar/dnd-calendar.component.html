@@ -13,7 +13,7 @@
 
     <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
       <div class="dnd-timeslot-times" style="display: flex;flex-wrap: wrap;align-items: center;justify-content: center;" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
-        <div style="border-bottom: 0px solid #1d1d1d;display: flex;justify-content: center;">
+        <div style="border-bottom: 1px solid #ffffff;display: flex;justify-content: center;">
           <div>{{timeslot.Time}}</div>
         </div>
         <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
@@ -40,7 +40,7 @@
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
             <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
               dnd-draggable [dragEnabled]="true" [dragData]="customer">
-              <strong>
+              <strong>&Xi;&#8227;
                 <span>{{customer.PostCode}}</span>
               </strong>&nbsp;
               <span>{{customer.DisplayName}} </span>
