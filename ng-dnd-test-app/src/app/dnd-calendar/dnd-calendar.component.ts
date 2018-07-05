@@ -96,20 +96,20 @@ export class DndCalendarComponent implements OnInit {
       this.Days.push(this.createDay(1, mockDay.name, mockDay.startingPoint));
     }
 
-    // let startingPoint = 41;
-    // this.UnschduledJobs = [];
-    // for (let j = 0; j < 5; j++) {
-    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
-    //   startingPoint++;
-    // }
-    // for (let j = 0; j < 5; j++) {
-    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
-    //   startingPoint++;
-    // }
-    // for (let j = 0; j < 5; j++) {
-    //   this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
-    //   startingPoint++;
-    // }
+    let startingPoint = 41;
+    this.UnschduledJobs = [];
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '1000'));
+      startingPoint++;
+    }
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '2000'));
+      startingPoint++;
+    }
+    for (let j = 0; j < 5; j++) {
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, '3000'));
+      startingPoint++;
+    }
   }
 
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {

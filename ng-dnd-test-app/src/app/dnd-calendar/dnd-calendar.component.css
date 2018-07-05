@@ -25,7 +25,7 @@
     border: 0px solid red;background-color: #ffffff
 }
 .dnd-timeslot-dropzone-item{
-    font-size: 14pt;cursor: pointer;position: relative;border: 0px solid #1d1d1d;
+    font-size: 14pt;position: relative;border: 0px solid #1d1d1d;
     /* border-radius: 5px; */
     padding: 5px;
     /* background-color: #2b5797; */
