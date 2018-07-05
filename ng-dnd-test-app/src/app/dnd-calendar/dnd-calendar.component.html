@@ -10,16 +10,19 @@
         <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
           (click)="toggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
           <strong>&Xi;
-            <span>{{customer.Suburb}}</span>
-          </strong>&nbsp;
-          <span>{{customer.DisplayName}} </span>
+              <span>{{customer.Suburb}}</span>
+            </strong>
+            <div>
+                <span>{{customer.PostCode}}</span>&nbsp;
+                <span>{{customer.DisplayName}} </span>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="dnd-container">
-  <div>
+  <div style="font-weight: bold">
     Designer 1
   </div>
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
@@ -66,8 +69,11 @@
               dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
               <strong>&Xi;
                 <span>{{customer.Suburb}}</span>
-              </strong>&nbsp;
-              <span>{{customer.DisplayName}} </span>
+              </strong>
+              <div>
+                  <span>{{customer.PostCode}}</span>&nbsp;
+                  <span>{{customer.DisplayName}} </span>
+              </div>
             </div>
           </div>
         </div>
@@ -92,6 +98,10 @@
         <strong>Suburb:</strong>
         &nbsp;{{SelectedCustomer.Suburb}}
       </div>
+      <div>
+          <strong>PostCode:</strong>
+          &nbsp;{{SelectedCustomer.PostCode}}
+        </div>
       <div>
         <strong>Lead:</strong>&nbsp;
         <a href="{{SelectedCustomer.Link}}">Link</a>

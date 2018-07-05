@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DndCustomer } from '../models/dnd-customer';
 import { DndTimeSlot } from '../models/dnd-time-slot';
 import { DndDay } from '../models/dnd-day';
+import { start } from 'repl';
 
 @Component({
   selector: 'app-dnd-calendar',
@@ -12,6 +13,311 @@ import { DndDay } from '../models/dnd-day';
 export class DndCalendarComponent implements OnInit {
   Days: DndDay[];
   UnschduledJobs: DndCustomer[] = [];
+  LastNames:any[] = [
+    'Smith',
+    'Jones',
+    'Brown',
+    'Williams',
+    'Johnson',
+    'White',
+    'Wilson',
+    'Lee',
+    'Taylor',
+    'Green',
+    'Thomas',
+    'Jackson',
+    'Thompson',
+    'Roberts',
+    'Anderson',
+    'Harris',
+    'Davis',
+    'James',
+    'Martin',
+    'Clark',
+    'King',
+    'Richards',
+    'Robinson',
+    'McDonald',
+    'Kelly',
+    'Miller',
+    'Robertson',
+    'Harrison',
+    'Edwards',
+    'Nguyen',
+    'Hill',
+    'Adams',
+    'Evans',
+    'Davies',
+    'Walker',
+    'Richardson',
+    'Stevens',
+    'Lewis',
+    'Parker',
+    'Carter',
+    'Cooper',
+    'Murphy',
+    'Clarke',
+    'Morris',
+    'Gray',
+    'Baker',
+    'Ryan',
+    'Hall',
+    'Watson',
+    'Phillips',
+    'Campbell',
+    'Wood',
+    'Allen',
+    'Moore',
+    'Young',
+    'Scott',
+    'Stewart',
+    'Mitchell',
+    'Hughes',
+    'Wright',
+    'Matthews',
+    'Cook',
+    'Johnston',
+    'Turner',
+    'Graham',
+    'Simpson',
+    'Bell',
+    'Thomson',
+    'Rogers',
+    'Murray',
+    'Kennedy',
+    'O\'Brien',
+    'Morgan',
+    'Ross',
+    'Mills',
+    'Fisher',
+    'Ellis',
+    'Price',
+    'Knight',
+    'Cox',
+    'Ward',
+    'Butler',
+    'Bennett',
+    'Reid',
+    'Bailey',
+    'Mason',
+    'Marshall',
+    'Webb',
+    'Walsh',
+    'Cameron',
+    'Gibson',
+    'Russell',
+    'Harvey',
+    'Shaw',
+    'Chapman',
+    'Elliott',
+    'Hamilton',
+    'Tran',
+    'Pearce',
+    'Colling'
+  ];
+
+  FirstNames:any[] = [
+    'Emily',
+    'Sarah',
+    'Jessica',
+    'Emma',
+    'Chloe',
+    'Georgia',
+    'Sophie',
+    'Hannah',
+    'Amy',
+    'Olivia',
+    'lucy',
+    'Grace',
+    'Lily',
+    'Jess',
+    'Kate',
+    'Caitlin',
+    'Zoe',
+    'Jasmine',
+    'Laura',
+    'ella',
+    'Charlotte',
+    'Holly',
+    'Erin',
+    'lauren',
+    'samantha',
+    'Katie',
+    'Jade',
+    'chelsea',
+    'Abbey',
+    'Hayley',
+    'Isabella',
+    'Stephanie',
+    'Courtney',
+    'mia',
+    'Amelia',
+    'Ruby',
+    'Bella',
+    'Molly',
+    'Claire',
+    'julia',
+    'ebony',
+    'Maddy',
+    'Ashleigh',
+    'Tayla',
+    'Amber',
+    'Nicole',
+    'claudia',
+    'Caitlyn',
+    'Natasha',
+    'Taylor',
+    'Ellie',
+    'megan',
+    'Rebecca',
+    'Kayla',
+    'Rachel',
+    'Maddie',
+    'Anna',
+    'Brooke',
+    'Ashley',
+    'Gemma',
+    'Bianca',
+    'Melissa',
+    'bree',
+    'Elizabeth',
+    'Imogen',
+    'Eliza',
+    'Clare',
+    'Paige',
+    'Tegan',
+    'Lisa',
+    'Rhiannon',
+    'morgan',
+    'Tara',
+    'Jacinta',
+    'Natalie',
+    'shannon',
+    'Madeleine',
+    'Steph',
+    'Bonnie',
+    'Brianna',
+    'Abbie',
+    'jessie',
+    'Ashlee',
+    'aLYSSA',
+    'Rose',
+    'Casey',
+    'Tahlia',
+    'Ava',
+    'Madison',
+    'Kaitlyn',
+    'Leah',
+    'abby',
+    'Bethany',
+    'Rachael',
+    'jennifer',
+    'Monique',
+    'Alice',
+    'shelby',
+    'Annie',
+    'jamie',
+    'James',
+    'jack',
+    'Harry',
+    'Daniel',
+    'alex',
+    'Liam',
+    'Jake',
+    'tom',
+    'Dylan',
+    'Sam',
+    'ryan',
+    'Ben',
+    'Lachlan',
+    'Jordan',
+    'Chris',
+    'David',
+    'Josh',
+    'Jacob',
+    'Matthew',
+    'William',
+    'Nathan',
+    'Joshua',
+    'Riley',
+    'Luke',
+    'michael',
+    'Max',
+    'Ethan',
+    'Patrick',
+    'JACKSON',
+    'matt',
+    'Andrew',
+    'Nicholas',
+    'Zac',
+    'John',
+    'connor',
+    'Jayden',
+    'Thomas',
+    'Nick',
+    'Aaron',
+    'Bailey',
+    'Kyle',
+    'lachie',
+    'cody',
+    'sean',
+    'Noah',
+    'Oliver',
+    'will',
+    'Brayden',
+    'edward',
+    'Callum',
+    'Samuel',
+    'Cameron',
+    'Dan',
+    'Marcus',
+    'Harrison',
+    'Shaun',
+    'Tim',
+    'Jasper',
+    'caleb',
+    'charlie',
+    'Jason',
+    'Peter',
+    'Mitch',
+    'Hayden',
+    'Isaac',
+    'Steven',
+    'Adam',
+    'Oscar',
+    'Mitchell',
+    'Hamish',
+    'Lucas',
+    'Scott',
+    'Blake',
+    'Anthony',
+    'Jim',
+    'Stephen',
+    'Tristan',
+    'justin',
+    'Corey',
+    'Gus',
+    'Joel',
+    'Jonathan',
+    'Jeremy',
+    'Ali',
+    'Joe',
+    'Brock',
+    'Kevin',
+    'Henry',
+    'Brandon',
+    'Shane',
+    'Lewis',
+    'joey',
+    'Hugo',
+    'zachary',
+    'tony',
+    'Angus',
+    'Kieran',
+    'Brenden',
+    'Stewart',
+    'Mark'
+  ];
 
   _selectCustomer: DndCustomer;
   _selectedTimeSlotIndex: number = -1;
@@ -38,20 +344,22 @@ export class DndCalendarComponent implements OnInit {
   simpleDrop: any = null;
   constructor() { }
 
-  createCustomer(startingPoint: number, postCode: string): DndCustomer {
-    let cust = new DndCustomer('cust ' + (startingPoint + 1), 'job ' + (startingPoint + 1), 'comment ' + (startingPoint + 1), 'link' + (startingPoint + 1), postCode);
+  createCustomer(startingPoint: number, suburb: string, postcode: string): DndCustomer {
+    let firstName = this.FirstNames[(startingPoint + 1)];
+    let lastName = this.LastNames[(startingPoint + 1)];
+    let cust = new DndCustomer(firstName, lastName, 'job ' + (startingPoint + 1), 'comment ' + (startingPoint + 1), 'link' + (startingPoint + 1), suburb, postcode);
 
     return cust;
   }
 
   createDay(weekNumber: number, dayName: string, startingPoint: number): DndDay {
-    let cust1 = this.createCustomer(startingPoint + 0, 'Gosford');
-    let cust2 = this.createCustomer(startingPoint + 1, 'Erina');
-    let cust3 = this.createCustomer(startingPoint + 2, 'Erina');
-    let cust4 = this.createCustomer(startingPoint + 3, 'Newcastle');
-    let cust5 = this.createCustomer(startingPoint + 4, 'Newcastle');
-    let cust6 = this.createCustomer(startingPoint + 5, 'Newcastle');
-    let cust7 = this.createCustomer(startingPoint + 6, 'Erina');
+    let cust1 = this.createCustomer(startingPoint + 0, 'Gosford', '2250');
+    let cust2 = this.createCustomer(startingPoint + 1, 'Erina', '2250');
+    let cust3 = this.createCustomer(startingPoint + 2, 'Erina', '2250');
+    let cust4 = this.createCustomer(startingPoint + 3, 'Newcastle', '2300');
+    let cust5 = this.createCustomer(startingPoint + 4, 'Newcastle', '2300');
+    let cust6 = this.createCustomer(startingPoint + 5, 'Newcastle', '2300');
+    let cust7 = this.createCustomer(startingPoint + 6, 'Erina', '2250');
 
     let timeslot1 = new DndTimeSlot('10am', 10, [cust1, cust2]);
     let timeslot2 = new DndTimeSlot('2pm', 5, [cust3, cust4, cust7]);
@@ -63,6 +371,7 @@ export class DndCalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.FirstNames);
     let mockDays = [
       {
         name: 'MON',
@@ -99,15 +408,15 @@ export class DndCalendarComponent implements OnInit {
     let startingPoint = 41;
     this.UnschduledJobs = [];
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Gosford'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Gosford', '2250'));
       startingPoint++;
     }
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Erina'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Erina', '2250'));
       startingPoint++;
     }
     for (let j = 0; j < 5; j++) {
-      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Newcastle'));
+      this.UnschduledJobs.push(this.createCustomer(startingPoint + 0, 'Newcastle', '2300'));
       startingPoint++;
     }
   }
@@ -209,7 +518,7 @@ export class DndCalendarComponent implements OnInit {
     this.SelectedTimeSlot.OpenCustomers = true;
   }
 
-  toggleCustomerClicked(event: any, customer:DndCustomer) {
+  toggleCustomerClicked(event: any, customer: DndCustomer) {
     this._selectCustomer = customer;
   }
 

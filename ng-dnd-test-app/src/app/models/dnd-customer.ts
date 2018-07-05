@@ -4,19 +4,29 @@ export interface IDndCustomer {
     Comment: string;
     Link: string;
     Suburb: string;
+    PostCode: string;
+    FirstName: string;
+    LastName: string;
 }
 
 export class DndCustomer implements IDndCustomer {
-    DisplayName: string;
+    get DisplayName(): string{
+        return this.FirstName + ' ' + this.LastName;
+    }
     JobNumber: string;
     Comment: string;
     Link: string;
     Suburb: string;
-    constructor(displayName: string, jobnumber: string, comment: string, link: string, suburb: string) {
-        this.DisplayName = displayName;
+    PostCode: string;
+    FirstName: string;
+    LastName: string;
+    constructor(firstName: string, lastName: string, jobnumber: string, comment: string, link: string, suburb: string,postcode: string) {
+        this.FirstName = firstName;
+        this.LastName = lastName;
         this.JobNumber = jobnumber;
         this.Comment = comment;
         this.Link = link;
         this.Suburb = suburb;
+        this.PostCode = postcode
     }
 }
