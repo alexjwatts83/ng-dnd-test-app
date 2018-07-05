@@ -180,4 +180,8 @@ export class DndCalendarComponent implements OnInit {
     // console.log(customer);
     this._selectedCustomerIndex = customerIndex;
   }
+
+  closePoorMansModal(){
+    this._selectedCustomerIndex = -1;
+  }
 }

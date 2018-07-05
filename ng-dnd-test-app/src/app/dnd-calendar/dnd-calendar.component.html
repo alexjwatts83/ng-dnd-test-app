@@ -46,18 +46,40 @@
       </div>
     </div>
   </div>
-  <div *ngIf="SelectedCustomer" class="dnd-customer-selected">
-    <p>
-      <strong>Name:</strong>{{SelectedCustomer.DisplayName}}</p>
-    <p>
-      <strong>Job Number:</strong>{{SelectedCustomer.JobNumber}}</p>
-    <p>
-      <strong>Post Code:</strong>{{SelectedCustomer.PostCode}}</p>
-    <p>
-      <strong>Lead:</strong>
-      <a href="{{SelectedCustomer.Link}}">Link</a>
-    </p>
-    <p>
-      <strong>Comments:</strong>{{SelectedCustomer.Comment}}</p>
-  </div>
 </div>
+
+<!-- The Modal -->
+<div *ngIf="SelectedCustomer" id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" (click)="closePoorMansModal()">&times;</span>
+        <h2>{{SelectedCustomer.JobNumber}}</h2>
+      </div>
+      <div class="modal-body">
+        <div>
+            <strong>Name:</strong>
+            &nbsp;{{SelectedCustomer.DisplayName}}
+        </div>
+        <div>
+            <strong>Post Code:</strong>
+            &nbsp;{{SelectedCustomer.PostCode}}
+        </div>
+        <div>
+            <strong>Lead:</strong>&nbsp;
+            <a href="{{SelectedCustomer.Link}}">Link</a>
+        </div>
+        <div>
+            <strong>Comments:</strong>
+            <p>
+                {{SelectedCustomer.Comment}}
+            </p>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <h3>Modal Footer</h3>
+      </div> -->
+    </div>
+  
+  </div>
