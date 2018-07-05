@@ -16,7 +16,7 @@
     font-size: 20pt;margin: auto;
 }
 .dnd-timeslot-times{
-    flex: 1;border: 0px solid blue;background-color: #2d89ef;color: #ffffff
+    flex: 1;border: 0px solid blue;background-color: #101010;color: #ffffff
 }
 .dnd-timeslot-dropzone{
     border: 0px solid red;background-color: #ffffff
@@ -33,7 +33,7 @@
 }
 .draggle-customer{
     /* font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d; */
-    background: #778899;
+    background: #2d89ef;
     margin: 5px 0px;
     padding: 5px;
     color: #eff4ff;

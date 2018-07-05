@@ -24,6 +24,9 @@
       </div>
       <div style="flex: 2;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
         class="dnd-timeslot-dropzone">
+        <div *ngIf="timeslot.Customers.length == 0"  style="display: flex;align-items: center;justify-items: center;height: 100%;">
+          <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
+        </div>
         <div *ngFor="let postcode of timeslot.Customers | groupBy:'PostCode'">
           <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="TimeslotClicked($event,dayIndex,timeslotIndex)">{{postcode.key}}
             <span class="mock-badge mock-badge-red">{{postcode.value.length}}</span>
