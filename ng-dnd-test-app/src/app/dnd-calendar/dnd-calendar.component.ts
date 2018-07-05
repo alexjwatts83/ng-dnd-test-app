@@ -24,6 +24,7 @@ export class DndCalendarComponent implements OnInit {
   model: any = {};
   heroForm: any;
   simpleDrop: any = null;
+  navigateDays: number = 0;
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -169,5 +170,9 @@ export class DndCalendarComponent implements OnInit {
 
   closePoorMansModal() {
     this._selectCustomer = null;
+  }
+
+  navigateToDay(daysAdd: number){
+    console.log('daysAdd:',daysAdd);
   }
 }

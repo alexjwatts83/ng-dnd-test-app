@@ -31,6 +31,18 @@
     </div>
   </div>
 </div>
+<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
+    <div>Navigation:&nbsp;</div>
+    <div class="dnd-nav" style="flex: 1;">
+      <div (click)="navigateToDay(-14)">-14days</div>
+      <div (click)="navigateToDay(-7)">-7days</div>
+      <div (click)="navigateToDay(-1)">-1day</div>
+      <div (click)="navigateToDay(0)">This week</div>
+      <div (click)="navigateToDay(1)">+1day</div>
+      <div (click)="navigateToDay(7)">+7days</div>
+      <div (click)="navigateToDay(14)">+14days</div>
+    </div>
+</div>
 <div class="dnd-container">
   <div class="dnd-day" *ngFor="let day of days; let dayIndex = index">
     <div class="dnd-timeslot-details">
