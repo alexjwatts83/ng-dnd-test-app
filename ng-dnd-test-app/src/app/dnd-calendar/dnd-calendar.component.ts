@@ -25,11 +25,11 @@ export class DndCalendarComponent implements OnInit {
   heroForm: any;
   simpleDrop: any = null;
   navigateDays: number = 0;
-  takeDays: number = 5;
+  takeDays: number;
   navigationDaysOptions: number[] = [
     -14, -7, -1, 0, 1, 7, 14
   ];
-  takeDaysOptions: number[] = [5, 7, 14];
+  takeDaysOptions: number[] = [7, 14];
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -63,6 +63,9 @@ export class DndCalendarComponent implements OnInit {
     this.model = {
       filterBy: this.filterBy
     };
+    let index = this.navigationDaysOptions.findIndex(x=>x==0);
+    this.navigateDays  =this.navigationDaysOptions[index];
+    this.takeDays = this.takeDaysOptions[0];
     this.getDays();
     //this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
 

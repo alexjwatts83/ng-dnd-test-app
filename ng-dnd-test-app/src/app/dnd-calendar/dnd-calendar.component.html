@@ -34,13 +34,13 @@
 <div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
   <div>Navigation:&nbsp;</div>
   <div style="flex:1;">
-    <div style="display: flex;background-color: lightgreen;align-items: center;justify-content: center;">
+    <div style="display: flex;background-color: transparent;align-items: center;justify-content: center;">
       <div>Take</div>
       <div class="dnd-nav" style="flex: 1;" *ngFor="let takeDaysOption of takeDaysOptions;">
         <div (click)="setTakeDays(takeDaysOption)">{{formatDays(takeDaysOption)}}</div>
       </div>
     </div>
-    <div style="display: flex;background-color: lightslategrey;align-items: center;justify-content: center;">
+    <div style="display: flex;background-color: transparent;align-items: center;justify-content: center;">
       <div>Days</div>
       <div class="dnd-nav" style="flex: 1;" *ngFor="let navigationDaysOption of navigationDaysOptions;">
         <div (click)="navigateToDay(navigationDaysOption)">{{formatDays(navigationDaysOption)}}</div>
