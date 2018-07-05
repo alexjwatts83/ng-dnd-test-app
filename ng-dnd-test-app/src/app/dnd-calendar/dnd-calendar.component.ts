@@ -27,8 +27,9 @@ export class DndCalendarComponent implements OnInit {
   navigateDays: number = 0;
   takeDays: number = 5;
   navigationDaysOptions: number[] = [
-    -14,-7,-1,0,1,7,14
+    -14, -7, -1, 0, 1, 7, 14
   ];
+  takeDaysOptions: number[] = [5, 7, 14];
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -62,8 +63,8 @@ export class DndCalendarComponent implements OnInit {
     this.model = {
       filterBy: this.filterBy
     };
-
-    this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
+    this.getDays();
+    //this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
 
     let startingPoint = 41;
     this.unschduledJobs = [];
@@ -71,11 +72,11 @@ export class DndCalendarComponent implements OnInit {
     // }
   }
 
-  formatDays(days: number): string{
-    if(days == 0){
+  formatDays(days: number): string {
+    if (days == 0) {
       return 'This week';
     }
-    if(days == -1 || days == 1){
+    if (days == -1 || days == 1) {
       return `${days} Day`;
     }
     return `${days} Days`;
@@ -186,20 +187,30 @@ export class DndCalendarComponent implements OnInit {
     this._selectCustomer = null;
   }
 
-  navigateToDay(daysAdd: number){
-    console.log('daysAdd:',daysAdd);
-    if(this._selectedTimeSlotIndex != -1){
+  navigateToDay(daysAdd: number) {
+    console.log('daysAdd:', daysAdd);
+    this.navigateDays = (daysAdd == 0) ? 0 : this.navigateDays + daysAdd;
+    this.getDays();
+  }
+
+  setTakeDays(takeDays: number) {
+    console.log('takeDays:', takeDays);
+    this.takeDays = takeDays;
+    this.getDays();
+  }
+
+  getDays(): void {
+    if (this._selectedTimeSlotIndex != -1) {
       this.SelectedTimeSlot.OpenCustomers = false;
     }
+
     this._selectedTimeSlotIndex = -1;
     this._selectedDayIndex = -1;
-    
-    if(this._selectCustomer!= null){
-      
+
+    if (this._selectCustomer != null) {
       this._selectCustomer = null;
     }
 
-    this.navigateDays = (daysAdd==0) ? 0 : this.navigateDays + daysAdd;
     this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
   }
 }
