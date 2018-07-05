@@ -8,7 +8,7 @@
       <div *ngIf="UnschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
           <div *ngFor="let customer of UnschduledJobs; let customerIndex = index">
               <div class="draggle-customer" style="margin-left: 5px;"
-              title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
+              title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customer)"
                 dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
                 <strong>&Xi;
                   <span>{{customer.PostCode}}</span>
@@ -59,7 +59,7 @@
             <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" style="color: #1d1d1d;font-size: 28px;font-weight: bold;">&times;</span>
           </div>
           <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
-            <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customerIndex)"
+            <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="ToggleCustomerClicked($event, customer)"
               dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
               <strong>&Xi;
                 <span>{{customer.PostCode}}</span>

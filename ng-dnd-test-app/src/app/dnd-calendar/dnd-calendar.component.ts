@@ -13,8 +13,9 @@ export class DndCalendarComponent implements OnInit {
   Days: DndDay[];
   UnschduledJobs: DndCustomer[] = [];
 
+  _selectCustomer: DndCustomer;
   _selectedTimeSlotIndex: number = -1;
-  _selectedCustomerIndex: number = -1;
+  //_selectedCustomerIndex: number = -1;
   _selectedDayIndex: number = -1;
 
   get SelectedTimeSlot(): DndTimeSlot {
@@ -24,8 +25,8 @@ export class DndCalendarComponent implements OnInit {
     return null;
   }
   get SelectedCustomer(): DndCustomer {
-    if (this._selectedCustomerIndex > -1) {
-      return this.SelectedTimeSlot.Customers[this._selectedCustomerIndex];
+    if (this._selectCustomer != null) {
+      return this._selectCustomer;
     }
     return null;
   }
@@ -216,7 +217,7 @@ export class DndCalendarComponent implements OnInit {
       || (this._selectedTimeSlotIndex != timeslotIndex)) {
       this._selectedTimeSlotIndex = timeslotIndex;
       this._selectedDayIndex = dayIndex;
-      this._selectedCustomerIndex = -1;
+      this._selectCustomer = null;
       console.log('day slot selected because different');
     } else {
       console.log('day slot remain same');
@@ -224,13 +225,14 @@ export class DndCalendarComponent implements OnInit {
     this.SelectedTimeSlot.OpenCustomers = true;
   }
 
-  ToggleCustomerClicked(event: any, customerIndex: number) {
+  ToggleCustomerClicked(event: any, customer:DndCustomer) {
     // console.log(event);
     // console.log(customer);
-    this._selectedCustomerIndex = customerIndex;
+    //this._selectedCustomerIndex = customerIndex;
+    this._selectCustomer = customer;
   }
 
   closePoorMansModal() {
-    this._selectedCustomerIndex = -1;
+    this._selectCustomer = null;
   }
 }
