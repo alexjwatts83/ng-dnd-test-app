@@ -1,7 +1,19 @@
 <div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
   <div>Filters:&nbsp;</div>
+  <div>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div>Group By</div>
+        <input type="radio" value="Suburb" (click)="FilterBy = 'Suburb'" name="food" [(ngModel)]="model.FilterBy"> Suburb
+        <input type="radio" value="PostCode" (click)="FilterBy = 'PostCode'" name="food" [(ngModel)]="model.FilterBy"> PostCode
+      <!-- <div>
+        <pre>{{model | json}}</pre>
+      </div> -->
+    </form>
+
+    <!-- <input name="options" ng-control="options" type="radio" [value]="PostCode" [(ngModel)]="FilterBy" ><br/> -->
+  </div>
 </div>
-<div style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
+<div *ngIf="ShowUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
   <div>Unscheduled:&nbsp;</div>
   <div style="flex: 1;display: flex;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
     <div *ngIf="UnschduledJobs.length ==0" style="padding-left: 10px;color: darkgrey">No Unscheduled jobs</div>
@@ -10,21 +22,18 @@
         <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
           (click)="toggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
           <strong>&Xi;
-              <span>{{customer.Suburb}}</span>
-            </strong>
-            <div>
-                <span>{{customer.PostCode}}</span>&nbsp;
-                <span>{{customer.DisplayName}} </span>
-            </div>
+            <span>{{customer.Suburb}}</span>
+          </strong>
+          <div>
+            <span>{{customer.PostCode}}</span>&nbsp;
+            <span>{{customer.DisplayName}} </span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="dnd-container">
-  <div style="font-weight: bold">
-    Designer 1
-  </div>
   <div class="dnd-day" *ngFor="let day of Days; let dayIndex = index">
     <div class="dnd-timeslot-details">
       <div class="flex-one">
@@ -44,8 +53,7 @@
         </div>
         <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
           <div>
-            [
-            <span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}]
+            <span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}
           </div>
         </div>
       </div>
@@ -54,7 +62,7 @@
         <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
           <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
         </div>
-        <div *ngFor="let suburb of timeslot.Customers | groupBy:'Suburb'">
+        <div *ngFor="let suburb of timeslot.Customers | groupBy:FilterBy">
           <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
             <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
           </div>
@@ -71,8 +79,8 @@
                 <span>{{customer.Suburb}}</span>
               </strong>
               <div>
-                  <span>{{customer.PostCode}}</span>&nbsp;
-                  <span>{{customer.DisplayName}} </span>
+                <span>{{customer.PostCode}}</span>&nbsp;
+                <span>{{customer.DisplayName}} </span>
               </div>
             </div>
           </div>
@@ -99,9 +107,9 @@
         &nbsp;{{SelectedCustomer.Suburb}}
       </div>
       <div>
-          <strong>PostCode:</strong>
-          &nbsp;{{SelectedCustomer.PostCode}}
-        </div>
+        <strong>PostCode:</strong>
+        &nbsp;{{SelectedCustomer.PostCode}}
+      </div>
       <div>
         <strong>Lead:</strong>&nbsp;
         <a href="{{SelectedCustomer.Link}}">Link</a>

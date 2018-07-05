@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DndModule } from 'ng2-dnd';
 import { DndCalendarComponent } from './dnd-calendar/dnd-calendar.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { GroupByPipe } from './pipes/group-by.pipe';
   imports: [
     BrowserModule,
     DndModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

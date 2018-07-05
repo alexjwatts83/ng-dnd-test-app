@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DndCustomer } from '../models/dnd-customer';
 import { DndTimeSlot } from '../models/dnd-time-slot';
 import { DndDay } from '../models/dnd-day';
-import { start } from 'repl';
+// import { start } from 'repl';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dnd-calendar',
@@ -13,7 +14,11 @@ import { start } from 'repl';
 export class DndCalendarComponent implements OnInit {
   Days: DndDay[];
   UnschduledJobs: DndCustomer[] = [];
-  LastNames:any[] = [
+  ShowUnscheduled: boolean = false;
+  FilterBy: string = 'PostCode';
+  model: any = {};
+  heroForm: any;
+  LastNames: any[] = [
     'Smith',
     'Jones',
     'Brown',
@@ -116,7 +121,7 @@ export class DndCalendarComponent implements OnInit {
     'Colling'
   ];
 
-  FirstNames:any[] = [
+  FirstNames: any[] = [
     'Emily',
     'Sarah',
     'Jessica',
@@ -370,8 +375,13 @@ export class DndCalendarComponent implements OnInit {
 
     return day;
   }
-
+  onSubmit() {
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
+  }
   ngOnInit() {
+    this.model = {
+      FilterBy: this.FilterBy
+    };
     console.log(this.FirstNames);
     let mockDays = [
       {
