@@ -3,8 +3,8 @@
   <div>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div>Group By</div>
-      <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="food" [(ngModel)]="model.filterBy"> Suburb
-      <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="food" [(ngModel)]="model.filterBy"> PostCode
+      <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="filterBy" [(ngModel)]="model.filterBy"> Suburb
+      <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="filterBy" [(ngModel)]="model.filterBy"> PostCode
       <!-- <div>
         <pre>{{model | json}}</pre>
       </div> -->
@@ -75,7 +75,7 @@
 
     <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
       <div class="dnd-timeslot-times" style="display: flex;flex-wrap: wrap;align-items: center;justify-content: center;" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
-        <div style="border-bottom: 1px solid #ffffff;display: flex;justify-content: center;">
+        <div style="border-bottom: 0px solid #ffffff;display: flex;justify-content: center;">
           <div>{{timeslot.Time}}</div>
         </div>
         <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
