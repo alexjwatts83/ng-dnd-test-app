@@ -11,7 +11,7 @@
 .dnd-time-slot {
     display: flex;
     background-color: #ffffff;
-    border: 1px solid darkgray;
+    border: 1px solid lightgray;
     margin-bottom: 5px;
     font-size: 14px;
 }
