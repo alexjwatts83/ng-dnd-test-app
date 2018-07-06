@@ -32,6 +32,8 @@ export class DndCalendarComponent implements OnInit {
   takeDaysOptions: number[] = [7, 14];
   showConfirmationModal:boolean = false;
   showFilterPanel: boolean = true;
+  states:string[];
+  brands:string[];
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -72,10 +74,12 @@ export class DndCalendarComponent implements OnInit {
     this.getDays();
     //this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
 
-    let startingPoint = 41;
+    
     this.unschduledJobs = [];
     // if (this.showUnscheduled) {
     // }
+    this.states = ['All','NSW','QLD','VIC','ACT','SA','NT','TAS','WA'];
+    this.brands = ['All','Other','Freedom','Wholesale','Sydney','The Good Guys','Wholesale Kitchens (CS)','Kinsman Kitchens'];
   }
 
   formatDays(days: number): string {

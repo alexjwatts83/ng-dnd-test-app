@@ -14,7 +14,29 @@
     <div class="filter-panel-item-description">
       Group By</div>
   </div>
-
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display:flex;flex-direction: column;align-items: stretch;border: 0px solid black;">
+      <div style="flex: 1;background-color: transparent;display: flex;">
+        <div style="flex: 1;">Brand</div>
+        <div style="flex: 3;text-align: left;">
+          <select style="font-size: 10px; width: 90%;">
+            <option *ngFor="let brand of brands;" value="{{brand}}">{{brand}}</option>
+          </select>
+        </div>
+      </div>
+      <div style="flex: 1;background-color: transparent;display: flex;">
+        <div style="flex: 1;">State</div>
+        <div style="flex: 3;text-align: left;">
+          <select style="font-size: 10px; width: 90%;">
+            <option *ngFor="let state of states;" value="{{state}}">{{state}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Filter
+    </div>
+  </div>
   <div class="filter-panel-item">
     <div class="filter-panel-item-content" style="display: flex;align-items: flex-start;justify-content: center;">
       <div class="dnd-nav" style="flex: 1;" *ngFor="let takeDaysOption of takeDaysOptions;">
