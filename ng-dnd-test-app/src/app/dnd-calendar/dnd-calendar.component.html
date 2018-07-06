@@ -54,7 +54,7 @@
 
 </div>
 <div class="dnd-container">
-  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index">
+  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index"  [ngClass]="{'is-today': day.IsToday }">
     <div class="dnd-timeslot-details">
       <!-- <div class="flex-one">
         <div class="dnd-timeslot-details-detail">

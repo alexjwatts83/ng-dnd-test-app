@@ -30,7 +30,7 @@
 
 .dnd-timeslot-details {
     display: flex;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
 }
 
 .dnd-timeslot-details-detail {
@@ -284,4 +284,9 @@
     background-color: grey;
     border: 1px solid darkgray;
     color: white;
+}
+
+.is-today{
+    background-color: #eff4ff;
+    border: 1px solid #2d89ef;
 }
