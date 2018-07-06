@@ -15,9 +15,14 @@
     margin-bottom: 5px;
     font-size: 14px;
 }
-.timeslot-close{
-    color: #1d1d1d;font-size: 20px;;font-weight: bold;
+
+.timeslot-close {
+    color: #1d1d1d;
+    font-size: 20px;
+    ;
+    font-weight: bold;
 }
+
 .dnd-day {
     /* border-left: 1px dashed #1d1d1d; */
     flex: 1;
@@ -276,17 +281,57 @@
     position: relative;
     cursor: pointer;
 }
-.no-appointments{
+
+.no-appointments {
     background-color: #00a300;
 }
 
-.all-booked{
+.all-booked {
     background-color: grey;
     border: 1px solid darkgray;
     color: white;
 }
 
-.is-today{
+.is-today {
     background-color: #eff4ff;
     border: 1px solid #2d89ef;
+}
+
+.filter-panel {
+    display: flex;
+    border: 1px solid #cacaca;
+    margin-bottom: 10px;
+    font-size: 10px;
+    padding: 5px;
+}
+
+.filter-panel-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.filter-panel>.filter-panel-item {
+    border-right: 1px solid #cacaca;
+    margin-right: 5px;
+    /* background-color: #2d89ef; */
+}
+
+.filter-panel>.filter-panel-item:last-child {
+    border-right: 0px;
+    margin-right: 0px;
+}
+
+.filter-panel-item-content {
+    /* background-color: pink; */
+    flex: 1;
+    text-align: center;
+}
+
+.filter-panel-item-description {
+    /* background-color: lightsalmon; */
+    text-align: center;
+    padding: 5px 0px;
+    /* border-top: 1px solid black; */
 }

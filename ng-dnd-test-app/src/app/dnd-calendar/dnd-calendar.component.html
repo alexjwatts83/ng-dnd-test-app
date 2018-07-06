@@ -1,18 +1,51 @@
-<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
-  <div>Filters:&nbsp;</div>
-  <div>
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div>Group By</div>
-      <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="filterBy" [(ngModel)]="model.filterBy"> Suburb
-      <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="filterBy" [(ngModel)]="model.filterBy"> PostCode
-      <!-- <div>
-        <pre>{{model | json}}</pre>
-      </div> -->
-    </form>
-    <div style="display: flex">
-        <div (click)="saveChanges()" class="mock-buttons">Save</div>
-        <div (click)="discardChanges()" class="mock-buttons">Discard</div>  
+<div (click)="showFilterPanel = !showFilterPanel" style="cursor: pointer;font-size: 10px;">Show/Hide Filters</div>
+<div *ngIf="showFilterPanel" class="filter-panel">
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="filterBy" [(ngModel)]="model.filterBy"> Suburb
+        <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="filterBy" [(ngModel)]="model.filterBy"> PostCode
+        <!-- <div>
+              <pre>{{model | json}}</pre>
+            </div> -->
+      </form>
     </div>
+    <div class="filter-panel-item-description">
+      Group By</div>
+  </div>
+
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display: flex;align-items: flex-start;justify-content: center;">
+      <div class="dnd-nav" style="flex: 1;" *ngFor="let takeDaysOption of takeDaysOptions;">
+        <div (click)="setTakeDays(takeDaysOption)">{{formatDays(takeDaysOption)}}</div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Take
+    </div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display: flex;align-items: flex-start;justify-content: center;">
+      <div class="dnd-nav" style="flex: 1;" *ngFor="let navigationDaysOption of navigationDaysOptions;">
+        <div (click)="navigateToDay(navigationDaysOption)">{{formatDays(navigationDaysOption)}}</div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Days
+    </div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item">
+      <div class="filter-panel-item-content">
+        &nbsp;
+      </div>
+      <div class="filter-panel-item-description" style="display: flex;align-items: flex-start;justify-content: center;">
+        <div (click)="saveChanges()" class="mock-buttons">Save</div>
+        <div (click)="discardChanges()" class="mock-buttons">Discard</div>
+      </div>
+    </div>
+
   </div>
 </div>
 <div *ngIf="showUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
@@ -35,26 +68,8 @@
     </div>
   </div>
 </div>
-<div style="display: flex;border: 2px solid black;margin-bottom: 10px;">
-  <div>Navigation:&nbsp;</div>
-  <div style="flex:1;">
-    <div style="display: flex;background-color: transparent;align-items: center;justify-content: center;">
-      <div>Take</div>
-      <div class="dnd-nav" style="flex: 1;" *ngFor="let takeDaysOption of takeDaysOptions;">
-        <div (click)="setTakeDays(takeDaysOption)">{{formatDays(takeDaysOption)}}</div>
-      </div>
-    </div>
-    <div style="display: flex;background-color: transparent;align-items: center;justify-content: center;">
-      <div>Days</div>
-      <div class="dnd-nav" style="flex: 1;" *ngFor="let navigationDaysOption of navigationDaysOptions;">
-        <div (click)="navigateToDay(navigationDaysOption)">{{formatDays(navigationDaysOption)}}</div>
-      </div>
-    </div>
-  </div>
-
-</div>
 <div class="dnd-container">
-  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index"  [ngClass]="{'is-today': day.IsToday }">
+  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index" [ngClass]="{'is-today': day.IsToday }">
     <div class="dnd-timeslot-details">
       <!-- <div class="flex-one">
         <div class="dnd-timeslot-details-detail">
@@ -64,10 +79,10 @@
       <div class="flex-one">
         <div class="dnd-timeslot-details-detail">
           <div>
-              {{day.Date | date:'dd/MM/yyyy'}}
+            {{day.Date | date:'dd/MM/yyyy'}}
           </div>
           <div>
-              {{day.Date | date:'EEEE'}} 
+            {{day.Date | date:'EEEE'}}
           </div>
         </div>
       </div>
@@ -85,9 +100,8 @@
         </div>
       </div>
       <div style="display: flex;flex: 2;padding: 5px;">
-          <div style="flex: 1;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
-          class="dnd-timeslot-dropzone"
-          [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
+        <div style="flex: 1;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
+          class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
           <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
             <div style="width: 100%;text-align: center;margin: auto;color: #ffffff">No Appointments</div>
           </div>
@@ -116,7 +130,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -166,8 +180,8 @@
     </div>
     <div class="modal-footer">
       <div style="display: flex;justify-content: flex-end;">
-          <div (click)="okClicked()" class="mock-buttons">OK</div>
-          <div (click)="cancelClicked()" class="mock-buttons">Cancel</div>
+        <div (click)="okClicked()" class="mock-buttons">OK</div>
+        <div (click)="cancelClicked()" class="mock-buttons">Cancel</div>
       </div>
     </div>
   </div>

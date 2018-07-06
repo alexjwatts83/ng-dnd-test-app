@@ -31,6 +31,7 @@ export class DndCalendarComponent implements OnInit {
   ];
   takeDaysOptions: number[] = [7, 14];
   showConfirmationModal:boolean = false;
+  showFilterPanel: boolean = true;
 
   get SelectedTimeSlot(): DndTimeSlot {
     if (this._selectedTimeSlotIndex > -1) {
@@ -61,6 +62,7 @@ export class DndCalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showFilterPanel=true;
     this.model = {
       filterBy: this.filterBy
     };
@@ -219,7 +221,7 @@ export class DndCalendarComponent implements OnInit {
   }
 
   action: string;
-  
+
   saveChanges(){
     this.action = 'Save';
     this.showConfirmationModal=true;
