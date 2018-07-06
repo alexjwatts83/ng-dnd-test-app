@@ -62,7 +62,14 @@
         </div>
       </div> -->
       <div class="flex-one">
-        <div class="dnd-timeslot-details-detail">{{day.Date | date:'EEE'}} ({{day.Date | date:'dd/MM'}})</div>
+        <div class="dnd-timeslot-details-detail">
+          <div>
+              {{day.Date | date:'dd/MM/yyyy'}}
+          </div>
+          <div>
+              {{day.Date | date:'EEEE'}} 
+          </div>
+        </div>
       </div>
     </div>
 
@@ -77,35 +84,39 @@
           </div>
         </div>
       </div>
-      <div style="flex: 2;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
-        class="dnd-timeslot-dropzone">
-        <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
-          <div style="width: 100%;text-align: center;color: darkgrey;margin: auto;">No Appointments</div>
-        </div>
-        <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
-          <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
-            <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
+      <div style="display: flex;flex: 2;padding: 5px;">
+          <div style="flex: 1;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
+          class="dnd-timeslot-dropzone"
+          [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
+          <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
+            <div style="width: 100%;text-align: center;margin: auto;color: #ffffff">No Appointments</div>
           </div>
-        </div>
-        <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 2px dashed crimson;margin: 2px;padding: 2px;">
-          <div style="display: flex;align-items: center;">
-            <span style="flex: 1;">&nbsp;Summary</span>
-            <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" style="color: #1d1d1d;font-size: 28px;font-weight: bold;">&times;</span>
+          <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
+            <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
+              <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
+            </div>
           </div>
-          <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
-            <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
-              dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
-              <strong>&Xi;
-                <span>{{customer.Suburb}}</span>
-              </strong>
-              <div>
-                <span>{{customer.PostCode}}</span>&nbsp;
-                <span>{{customer.DisplayName}} </span>
+          <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 1px dashed grey;margin: 2px;padding: 2px;background-color: #ffffff;">
+            <div style="display: flex;align-items: center;">
+              <span style="flex: 1;color: #1d1d1d;">&nbsp;Customers</span>
+              <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" class="timeslot-close">&times;</span>
+            </div>
+            <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
+              <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
+                dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
+                <strong>&Xi;
+                  <span>{{customer.Suburb}}</span>
+                </strong>
+                <div>
+                  <span>{{customer.PostCode}}</span>&nbsp;
+                  <span>{{customer.DisplayName}} </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </div>

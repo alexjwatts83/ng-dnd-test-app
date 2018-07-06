@@ -11,12 +11,15 @@
 .dnd-time-slot {
     display: flex;
     background-color: #ffffff;
-    border-top: 1px solid #1d1d1d;
-    margin-bottom: 10px;
+    border: 1px solid darkgray;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
-
+.timeslot-close{
+    color: #1d1d1d;font-size: 20px;;font-weight: bold;
+}
 .dnd-day {
-    border-left: 1px dashed #1d1d1d;
+    /* border-left: 1px dashed #1d1d1d; */
     flex: 1;
     margin: auto;
     padding: 0px 5px;
@@ -31,30 +34,36 @@
 }
 
 .dnd-timeslot-details-detail {
-    font-size: 20pt;
+    /* font-size: 20pt; */
+    font-size: 14px;
     margin: auto;
 }
 
 .dnd-timeslot-times {
     flex: 1;
-    border: 0px solid blue;
-    background-color: #101010;
-    color: #ffffff
+    /* border: 1px solid darkgray; */
+    /* background-color: #101010;
+    color: #ffffff; */
+    /* background-color: #cccaca; */
+    background-color: transparent;
+    color: #1d1d1d;
+    padding: 5px;
 }
 
 .dnd-timeslot-dropzone {
     border: 0px solid red;
-    background-color: #ffffff
+    background-color: #cccaca;
+    border: 1px solid darkgray;
 }
 
 .dnd-timeslot-dropzone-item {
-    font-size: 12pt;
+    /* font-size: 12pt; */
     position: relative;
     border: 0px solid #1d1d1d;
     /* border-radius: 5px; */
     padding: 5px;
     /* background-color: #2b5797; */
-    border-bottom: 1px dashed #1d1d1d;
+    /* border-bottom: 1px dashed #1d1d1d; */
 }
 
 .flex-one {
@@ -266,4 +275,13 @@
     text-align: center;
     position: relative;
     cursor: pointer;
+}
+.no-appointments{
+    background-color: #00a300;
+}
+
+.all-booked{
+    background-color: grey;
+    border: 1px solid darkgray;
+    color: white;
 }
