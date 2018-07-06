@@ -72,10 +72,10 @@
 
 .draggle-customer {
     /* font-size: 14pt;margin-bottom: 10px;position: relative;border: 0px solid #1d1d1d;border-radius: 0px;padding: 5px;background-color: #ffffff;color: #1d1d1d; */
-    background: #2d89ef;
+    background: #eff4ff;
     margin: 5px 0px;
     padding: 5px;
-    color: #eff4ff;
+    color: #2d89ef;
 }
 
 .dnd-timeslot-selected, .dnd-customer-selected {
