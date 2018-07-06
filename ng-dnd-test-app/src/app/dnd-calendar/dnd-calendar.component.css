@@ -131,6 +131,7 @@
 .modal {
     text-align: center;
     padding: 0!important;
+    font-size: 14px;
 }
 
 .modal:before {
@@ -160,7 +161,8 @@
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    font-size: 14px;
 }
 
 /* The Close Button */
@@ -173,25 +175,28 @@
 }
 
 .close:hover, .close:focus {
-    color: #000;
+    color: lightgrey;
     text-decoration: none;
     cursor: pointer;
 }
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #2d89ef;
+    background-color: #1d1d1d;
     color: white;
+    font-size: 14px;
 }
 
 .modal-body {
     padding: 2px 16px;
+    font-size: 14px;
 }
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #2d89ef;
+    background-color: #1d1d1d;
     color: #1d1d1d;
+    font-size: 14px;
 }
 
 /* Add Animation */
@@ -252,6 +257,7 @@
 
 .box>* {
     flex: 1 1 150px;
+    margin-bottom: 5px;
 }
 
 .box>*:nth-child(odd) {
