@@ -37,7 +37,7 @@
     </div>
   </dnd-filter-panel-item>
   <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content">
+    <div class="filter-panel-item-content-cemtered">
       <div class="dnd-nav" *ngFor="let takeDaysOption of takeDaysOptions;">
         <div (click)="takeDaysClicked($event,takeDaysOption)">{{formatDays(takeDaysOption)}}
           <span *ngIf="takeDaysOption == takeDays">&#9745;</span>
@@ -46,6 +46,18 @@
     </div>
     <div class="filter-panel-item-description">
       Take
+    </div>
+  </dnd-filter-panel-item>
+
+  <dnd-filter-panel-item class="filter-panel-item">
+    <div class="filter-panel-item-content-cemtered">
+      <div class="dnd-nav" *ngFor="let navigationDaysOption of navigationDaysOptions;">
+        <div (click)="navigationDaysClicked($event, navigationDaysOption)">{{formatDays(navigationDaysOption)}}
+        </div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Days
     </div>
   </dnd-filter-panel-item>
 </div>

@@ -265,7 +265,7 @@
     font-weight: bold;
 }
 
-.dnd-nav {
+/* .dnd-nav {
     display: flex;
 }
 
@@ -286,7 +286,7 @@
     text-align: center;
     position: relative;
     cursor: pointer;
-}
+} */
 
 .no-appointments {
     background-color: #00a300;

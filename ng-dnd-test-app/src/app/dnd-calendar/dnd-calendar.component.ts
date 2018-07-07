@@ -24,12 +24,8 @@ export class DndCalendarComponent implements OnInit {
   model: any = {};
   heroForm: any;
   simpleDrop: any = null;
-  navigateDays: number = 0;
+  navigateDays: number;
   takeDays: number;
-  navigationDaysOptions: number[] = [
-    -14, -7, -1, 0, 1, 7, 14
-  ];
-  takeDaysOptions: number[] = [7, 14];
   showConfirmationModal:boolean = false;
   showFilterPanel: boolean = true;
 
@@ -66,9 +62,9 @@ export class DndCalendarComponent implements OnInit {
     this.model = {
       filterBy: this.filterBy
     };
-    let index = this.navigationDaysOptions.findIndex(x=>x==0);
-    this.navigateDays  =this.navigationDaysOptions[index];
-    this.takeDays = this.takeDaysOptions[0];
+    let index = this.calendarDataService.navigationDaysOptions.findIndex(x=>x==0);
+    this.navigateDays  =this.calendarDataService.navigationDaysOptions[index];
+    this.takeDays = this.calendarDataService.takeDaysOptions[0];
     this.getDays();
     //this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
 
@@ -200,6 +196,11 @@ export class DndCalendarComponent implements OnInit {
   takeDaysClickedHandler(author){
     console.log(author);
     this.setTakeDays(Number(author));
+  }
+
+  navigationDaysClickedHandler(author){
+    console.log(author);
+    this.navigateToDay(Number(author));
   }
 
   getDays(): void {

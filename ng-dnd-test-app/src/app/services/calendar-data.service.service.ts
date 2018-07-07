@@ -11,6 +11,11 @@ export class CalendarDataService {
 
   brands: string[] = ['All','Other','Freedom','Wholesale','Sydney','The Good Guys','Wholesale Kitchens (CS)','Kinsman Kitchens'];
   states: string[] = ['All','NSW','QLD','VIC','ACT','SA','NT','TAS','WA'];
+  takeDaysOptions: number[] = [7, 14];
+  navigationDaysOptions: number[] = [
+    -14, -7, -1, 0, 1, 7, 14
+  ];
+
   constructor(private mockNameService: MockNameService) {
     this._days = [];
     this._currentStartFrom = 0;

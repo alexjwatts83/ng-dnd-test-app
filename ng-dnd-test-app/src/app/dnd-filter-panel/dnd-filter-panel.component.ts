@@ -15,6 +15,12 @@ export class DndFilterPanelComponent implements OnInit {
 
   @Output() filterByChange = new EventEmitter();
 
+  @Output()
+  takeDaysClick: EventEmitter<String> = new EventEmitter<String>();
+
+  @Output()
+  navigationDaysClick: EventEmitter<String> = new EventEmitter<String>();
+
   private _filterBy: string;
 
   @Input()
@@ -29,21 +35,25 @@ export class DndFilterPanelComponent implements OnInit {
 
   brands:string[];
   states:string[];
-  takeDaysOptions: number[] = [7, 14];
-
+  takeDaysOptions: number[];
+  navigationDaysOptions: number[];
   constructor(private calendarDataService: CalendarDataService) { 
     this.brands = this.calendarDataService.brands;
     this.states = this.calendarDataService.states;
+    this.takeDaysOptions = this.calendarDataService.takeDaysOptions;
+    this.navigationDaysOptions = this.calendarDataService.navigationDaysOptions;
   }
 
   ngOnInit() {
     
   }
-  @Output()
-  takeDaysClick: EventEmitter<String> = new EventEmitter<String>();
 
   takeDaysClicked(event, takeDays){
     this.takeDaysClick.emit(takeDays); //emmiting the event.
+  }
+
+  navigationDaysClicked(event, navigationDays){
+    this.navigationDaysClick.emit(navigationDays); //emmiting the event.
   }
 
   formatDays(days: number): string {
