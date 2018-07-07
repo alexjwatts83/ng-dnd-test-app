@@ -43,7 +43,7 @@ export class DndFilterPanelComponent implements OnInit {
     this.takeDaysOptions = this.calendarDataService.takeDaysOptions;
     this.navigationDaysOptions = this.calendarDataService.navigationDaysOptions;
   }
-
+  
   ngOnInit() {
     
   }

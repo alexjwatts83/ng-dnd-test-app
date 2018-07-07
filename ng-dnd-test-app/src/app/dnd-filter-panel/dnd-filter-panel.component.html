@@ -4,7 +4,7 @@
 <div *ngIf="showFilterPanel" class="filter-panel">
   <dnd-filter-panel-item class="filter-panel-item">
     <div class="filter-panel-item-content">
-      <form name="form">
+      <form name="form2">
         <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" [checked]="filterBy == 'Suburb'" name="filterBy"> Suburb
         <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" [checked]="filterBy == 'PostCode'" name="filterBy"> PostCode
       </form>
@@ -48,7 +48,6 @@
       Take
     </div>
   </dnd-filter-panel-item>
-
   <dnd-filter-panel-item class="filter-panel-item">
     <div class="filter-panel-item-content-cemtered">
       <div class="dnd-nav" *ngFor="let navigationDaysOption of navigationDaysOptions;">
@@ -58,6 +57,15 @@
     </div>
     <div class="filter-panel-item-description">
       Days
+    </div>
+  </dnd-filter-panel-item>
+  <dnd-filter-panel-item class="filter-panel-item">
+    <div class="filter-panel-item-content">
+      &nbsp;
+    </div>
+    <div class="filter-panel-item-description">
+      <div (click)="saveChanges()" class="mock-buttons">Save</div>
+      <div (click)="discardChanges()" class="mock-buttons">Discard</div>
     </div>
   </dnd-filter-panel-item>
 </div>

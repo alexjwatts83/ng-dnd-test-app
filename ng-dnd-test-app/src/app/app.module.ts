@@ -10,6 +10,7 @@ import { CalendarDataService } from '../app/services/calendar-data.service.servi
 import { MockNameService } from '../app/services/mock-name.service';
 import { DndFilterPanelComponent } from './dnd-filter-panel/dnd-filter-panel.component';
 import { DndFilterPanelItemComponent } from './dnd-filter-panel-item/dnd-filter-panel-item.component';
+import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DndFilterPanelItemComponent } from './dnd-filter-panel-item/dnd-filter-
     DndCalendarComponent,
     GroupByPipe,
     DndFilterPanelComponent,
-    DndFilterPanelItemComponent
+    DndFilterPanelItemComponent,
+    EscapeHtmlPipe,
   ],
   imports: [
     BrowserModule,
