@@ -41,3 +41,25 @@
     padding: 5px 0px;
     /* border-top: 1px solid black; */
 }
+.dnd-nav {
+    display: flex;
+}
+
+.dnd-nav>* {
+    flex: 1;
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.mock-buttons {
+    background-color: lightgray;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}

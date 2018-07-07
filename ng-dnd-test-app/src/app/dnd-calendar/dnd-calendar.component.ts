@@ -79,15 +79,6 @@ export class DndCalendarComponent implements OnInit {
     
   }
 
-  formatDays(days: number): string {
-    if (days == 0) {
-      return 'This week';
-    }
-    if (days == -1 || days == 1) {
-      return `${days} Day`;
-    }
-    return `${days} Days`;
-  }
   //todo: refactor and move to service
   transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
     console.log('called transferDataSuccess');
@@ -204,6 +195,11 @@ export class DndCalendarComponent implements OnInit {
     console.log('takeDays:', takeDays);
     this.takeDays = takeDays;
     this.getDays();
+  }
+
+  takeDaysClickedHandler(author){
+    console.log(author);
+    this.setTakeDays(Number(author));
   }
 
   getDays(): void {

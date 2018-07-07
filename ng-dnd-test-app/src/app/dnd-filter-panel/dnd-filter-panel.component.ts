@@ -10,6 +10,9 @@ export class DndFilterPanelComponent implements OnInit {
   @Input()
   showFilterPanel: boolean;
 
+  @Input()
+  takeDays: number;
+
   @Output() filterByChange = new EventEmitter();
 
   private _filterBy: string;
@@ -26,6 +29,7 @@ export class DndFilterPanelComponent implements OnInit {
 
   brands:string[];
   states:string[];
+  takeDaysOptions: number[] = [7, 14];
 
   constructor(private calendarDataService: CalendarDataService) { 
     this.brands = this.calendarDataService.brands;
@@ -34,6 +38,22 @@ export class DndFilterPanelComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+  @Output()
+  takeDaysClick: EventEmitter<String> = new EventEmitter<String>();
+
+  takeDaysClicked(event, takeDays){
+    this.takeDaysClick.emit(takeDays); //emmiting the event.
+  }
+
+  formatDays(days: number): string {
+    if (days == 0) {
+      return 'This week';
+    }
+    if (days == -1 || days == 1) {
+      return `${days} Day`;
+    }
+    return `${days} Days`;
   }
 
 }
