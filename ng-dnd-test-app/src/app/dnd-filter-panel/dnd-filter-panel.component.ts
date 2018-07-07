@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CalendarDataService } from '../services/calendar-data.service.service';
 
 @Component({
   selector: 'dnd-filter-panel',
@@ -23,9 +24,16 @@ export class DndFilterPanelComponent implements OnInit {
     this.filterByChange.emit(this._filterBy);
   }
 
-  constructor() { }
+  brands:string[];
+  states:string[];
+
+  constructor(private calendarDataService: CalendarDataService) { 
+    this.brands = this.calendarDataService.brands;
+    this.states = this.calendarDataService.states;
+  }
 
   ngOnInit() {
+    
   }
 
 }

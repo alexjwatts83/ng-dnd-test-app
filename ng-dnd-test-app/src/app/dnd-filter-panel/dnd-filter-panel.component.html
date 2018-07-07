@@ -3,21 +3,37 @@
 </div>
 <div *ngIf="showFilterPanel" class="filter-panel">
   <dnd-filter-panel-item class="filter-panel-item">
-    <!-- put your dynamic content here -->
     <div class="filter-panel-item-content">
-        <form name="form">
-
-            <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="filterBy"> Suburb
-            <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="filterBy"> PostCode
-            <!-- <div>
-                  <pre>{{model | json}}</pre>
-                </div> -->
-                {{filterBy}}
-          </form>
+      <form name="form">
+        <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" [checked]="filterBy == 'Suburb'" name="filterBy"> Suburb
+        <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" [checked]="filterBy == 'PostCode'" name="filterBy"> PostCode
+      </form>
     </div>
-    <!-- end dynamic content -->
     <div class="filter-panel-item-description">
       Group By
+    </div>
+  </dnd-filter-panel-item>
+  <dnd-filter-panel-item class="filter-panel-item">
+    <div class="filter-panel-item-content">
+        <div style="flex: 1;background-color: transparent;display: flex;">
+          <div style="flex: 1;">Brand</div>
+          <div style="flex: 3;text-align: left;">
+            <select style="font-size: 10px; width: 90%;">
+              <option *ngFor="let brand of brands;" value="{{brand}}">{{brand}}</option>
+            </select>
+          </div>
+      </div>
+      <div style="flex: 1;background-color: transparent;display: flex;">
+          <div style="flex: 1;">State</div>
+          <div style="flex: 3;text-align: left;">
+            <select style="font-size: 10px; width: 90%;">
+              <option *ngFor="let state of states;" value="{{state}}">{{state}}</option>
+            </select>
+          </div>
+        </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Filter
     </div>
   </dnd-filter-panel-item>
 </div>

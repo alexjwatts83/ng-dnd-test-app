@@ -9,6 +9,8 @@ export class CalendarDataService {
   private _days: DndDay[];
   private _currentStartFrom:number;
 
+  brands: string[] = ['All','Other','Freedom','Wholesale','Sydney','The Good Guys','Wholesale Kitchens (CS)','Kinsman Kitchens'];
+  states: string[] = ['All','NSW','QLD','VIC','ACT','SA','NT','TAS','WA'];
   constructor(private mockNameService: MockNameService) {
     this._days = [];
     this._currentStartFrom = 0;
