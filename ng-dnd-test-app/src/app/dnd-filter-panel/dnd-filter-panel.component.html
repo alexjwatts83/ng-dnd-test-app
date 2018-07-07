@@ -1,0 +1,76 @@
+<div (click)="showFilterPanel = !showFilterPanel" class="show-filter-panel-toggle">
+  Show/Hide Filters
+</div>
+<div *ngIf="showFilterPanel" class="filter-panel">
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" name="filterBy" [(ngModel)]="model.filterBy"> Suburb
+        <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" name="filterBy" [(ngModel)]="model.filterBy"> PostCode
+        <!-- <div>
+              <pre>{{model | json}}</pre>
+            </div> -->
+      </form>
+    </div>
+    <div class="filter-panel-item-description">
+      Group By</div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display:flex;flex-direction: column;align-items: stretch;border: 0px solid black;">
+      <div style="flex: 1;background-color: transparent;display: flex;">
+        <div style="flex: 1;">Brand</div>
+        <div style="flex: 3;text-align: left;">
+          <select style="font-size: 10px; width: 90%;">
+            <option *ngFor="let brand of brands;" value="{{brand}}">{{brand}}</option>
+          </select>
+        </div>
+      </div>
+      <div style="flex: 1;background-color: transparent;display: flex;">
+        <div style="flex: 1;">State</div>
+        <div style="flex: 3;text-align: left;">
+          <select style="font-size: 10px; width: 90%;">
+            <option *ngFor="let state of states;" value="{{state}}">{{state}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Filter
+    </div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display: flex;align-items: flex-start;justify-content: center;">
+      <div class="dnd-nav" style="flex: 1;" *ngFor="let takeDaysOption of takeDaysOptions;">
+        <div (click)="setTakeDays(takeDaysOption)">{{formatDays(takeDaysOption)}}
+          <span *ngIf="takeDaysOption == takeDays">&#9745;</span>
+        </div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Take
+    </div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item-content" style="display: flex;align-items: flex-start;justify-content: center;">
+      <div class="dnd-nav" style="flex: 1;" *ngFor="let navigationDaysOption of navigationDaysOptions;">
+        <div (click)="navigateToDay(navigationDaysOption)">{{formatDays(navigationDaysOption)}}</div>
+      </div>
+    </div>
+    <div class="filter-panel-item-description">
+      Days
+    </div>
+  </div>
+  <div class="filter-panel-item">
+    <div class="filter-panel-item">
+      <div class="filter-panel-item-content">
+        &nbsp;
+      </div>
+      <div class="filter-panel-item-description" style="display: flex;align-items: flex-start;justify-content: center;">
+        <div (click)="saveChanges()" class="mock-buttons">Save</div>
+        <div (click)="discardChanges()" class="mock-buttons">Discard</div>
+      </div>
+    </div>
+
+  </div>
+</div>

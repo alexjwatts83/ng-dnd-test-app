@@ -8,18 +8,19 @@ import { GroupByPipe } from './pipes/group-by.pipe';
 import { FormsModule } from '@angular/forms';
 import { CalendarDataService } from '../app/services/calendar-data.service.service';
 import { MockNameService } from '../app/services/mock-name.service';
+import { DndFilterPanelComponent } from './dnd-filter-panel/dnd-filter-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DndCalendarComponent,
     GroupByPipe,
-
+    DndFilterPanelComponent
   ],
   imports: [
     BrowserModule,
     DndModule.forRoot(),
-    FormsModule,
+    FormsModule
   ],
   providers: [
     CalendarDataService
