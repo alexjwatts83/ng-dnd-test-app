@@ -12,16 +12,16 @@ import { DndFilterPanelComponent } from './dnd-filter-panel/dnd-filter-panel.com
 import { DndFilterPanelItemComponent } from './dnd-filter-panel-item/dnd-filter-panel-item.component';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      DndCalendarComponent,
-      GroupByPipe,
-      DndFilterPanelComponent,
-      DndFilterPanelItemComponent
-   ],
-   imports: [
-      BrowserModule,
-      DndModule.forRoot(),
+  declarations: [
+    AppComponent,
+    DndCalendarComponent,
+    GroupByPipe,
+    DndFilterPanelComponent,
+    DndFilterPanelItemComponent
+  ],
+  imports: [
+    BrowserModule,
+    DndModule.forRoot(),
     FormsModule
   ],
   providers: [

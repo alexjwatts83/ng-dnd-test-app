@@ -8,6 +8,7 @@
     margin-bottom: 10px;
     font-size: 10px;
     padding: 5px;
+    background-color: #cacaca;
 }
 
 .filter-panel-item {
@@ -18,7 +19,7 @@
 }
 
 .filter-panel>.filter-panel-item {
-    border-right: 1px solid #cacaca;
+    border-right: px solid #cacaca;
     margin-right: 5px;
     /* background-color: #2d89ef; */
 }
@@ -29,13 +30,13 @@
 }
 
 .filter-panel-item-content {
-    /* background-color: pink; */
+    background-color: pink;
     flex: 1;
     text-align: center;
 }
 
 .filter-panel-item-description {
-    /* background-color: lightsalmon; */
+    background-color: lightsalmon;
     text-align: center;
     padding: 5px 0px;
     /* border-top: 1px solid black; */

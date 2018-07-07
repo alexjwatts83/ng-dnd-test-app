@@ -1,4 +1,4 @@
-<dnd-filter-panel showFilterPanel="showFilterPanel"></dnd-filter-panel>
+<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy"></dnd-filter-panel>
 <div *ngIf="showUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
   <div>Unscheduled:&nbsp;</div>
   <div style="flex: 1;display: flex;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
@@ -19,6 +19,7 @@
     </div>
   </div>
 </div>
+{{filterBy}}
 <div class="dnd-container">
   <div class="dnd-day" *ngFor="let day of days; let dayIndex = index" [ngClass]="{'is-today': day.IsToday }">
     <div class="dnd-timeslot-details">

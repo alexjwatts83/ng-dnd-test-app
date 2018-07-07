@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'dnd-filter-panel',
@@ -6,8 +6,23 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./dnd-filter-panel.component.css']
 })
 export class DndFilterPanelComponent implements OnInit {
-  @Input() 
+  @Input()
   showFilterPanel: boolean;
+
+  @Output() filterByChange = new EventEmitter();
+
+  private _filterBy: string;
+
+  @Input()
+  get filterBy() {
+    return this._filterBy;
+  }
+
+  set filterBy(val) {
+    this._filterBy = val;
+    this.filterByChange.emit(this._filterBy);
+  }
+
   constructor() { }
 
   ngOnInit() {
