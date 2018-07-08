@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="dnd-timeslot-content">
-        <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,timeslot.Customers)" class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
+        <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,day,timeslot)" class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
           <div *ngIf="timeslot.Customers.length == 0">
             <div>No Appointments</div>
           </div>
@@ -38,7 +38,7 @@
             </div>
             <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
                 <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
-                  dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromList: timeslot.Customers, customerIndex: customerIndex}">
+                  dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, day: day, timeslot: timeslot}">
                   <strong>&Xi;
                     <span>{{customer.Suburb}}</span>
                   </strong>

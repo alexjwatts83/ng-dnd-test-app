@@ -17,7 +17,7 @@ export class DndCalendarComponent implements OnInit {
 
   days: DndDay[];
   filterBy: string = 'Suburb';
-  
+
   navigateDays: number;
   takeDays: number;
   showConfirmationModal: boolean = false;
@@ -54,7 +54,7 @@ export class DndCalendarComponent implements OnInit {
     this.takeDays = this.calendarDataService.takeDaysOptions[0];
     this.getDays();
   }
-  
+
   toggleCustomerClicked(event: any, customer: DndCustomer) {
     this._selectCustomer = customer;
   }
@@ -85,19 +85,23 @@ export class DndCalendarComponent implements OnInit {
     this.navigateToDay(Number(author));
   }
 
-  dayClickedHandler(day: any){
+  dayClickedHandler(day: any) {
     console.log(day);
     this._selectedDay = day;
   }
 
-  timeslotClickedHandler(timeslot: any){
+  timeslotClickedHandler(timeslot: any) {
     console.log(timeslot);
     this._selectedTimeSlot = timeslot;
   }
 
-  customerClickedHandler(customer: any){
+  customerClickedHandler(customer: any) {
     console.log(customer);
     this._selectCustomer = customer;
+  }
+
+  transferDataEventHandler(data: any) {
+    this.calendarDataService.transferDataEventHandler(data);
   }
 
   getDays(): void {

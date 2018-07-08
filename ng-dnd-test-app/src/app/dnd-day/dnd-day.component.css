@@ -30,6 +30,7 @@
     border: 1px solid #cacaca;
     display: flex;
     margin-bottom: 5px;
+    background-color: #ffffff;
 }
 
 .dnd-timeslot-times {
@@ -57,6 +58,7 @@
 
 .dnd-timeslot-customer-heading {
     display: flex;
+    color: #1d1d1d;;
 }
 
 .dnd-timeslot-customer-heading>span:first-child {
@@ -74,6 +76,31 @@
     margin: 5px 0px;
     padding: 5px;
     color: #2d89ef;
+}
+
+.show-warning {
+    color: #1d1d1d;
+    background-color: #ffc40d;
+}
+
+.show-warning-red {
+    color: crimson;
+}
+
+.no-appointments {
+    background-color: #00a300;
+    color: #ffffff;
+}
+
+.all-booked {
+    background-color: grey;
+    border: 1px solid darkgray;
+    color: white;
+}
+
+.is-today {
+    background-color: #eff4ff;
+    border: 1px solid #2d89ef;
 }
 
 /* 

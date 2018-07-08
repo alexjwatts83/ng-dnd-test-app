@@ -195,18 +195,3 @@
     position: relative;
     cursor: pointer;
 } */
-
-.no-appointments {
-    background-color: #00a300;
-}
-
-.all-booked {
-    background-color: grey;
-    border: 1px solid darkgray;
-    color: white;
-}
-
-.is-today {
-    background-color: #eff4ff;
-    border: 1px solid #2d89ef;
-}

@@ -1,8 +1,12 @@
-<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
+<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" 
+[takeDays]="takeDays" 
+(takeDaysClick)="takeDaysClickedHandler($event)"
   (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
 
 <div class="dnd-container">
-  <app-dnd-day *ngFor="let day of days; let dayIndex = index" [day]="day" [filterBy]="filterBy" (dayClicked)="dayClickedHandler($event)">
+  <app-dnd-day *ngFor="let day of days; let dayIndex = index" 
+  [day]="day" [filterBy]="filterBy" 
+  (dayClicked)="dayClickedHandler($event)" (transferDataEvent)="transferDataEventHandler($event)">
   </app-dnd-day>
 </div>
 
