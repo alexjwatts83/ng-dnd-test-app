@@ -11,7 +11,6 @@ export class DndFilterPanelItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(`itemClass: ${this.itemClass}`);
   }
 
 }

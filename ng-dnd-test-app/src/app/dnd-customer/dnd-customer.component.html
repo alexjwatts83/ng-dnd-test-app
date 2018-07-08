@@ -1,3 +1,10 @@
-<p>
-  dnd-customer works!
-</p>
+<div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
+  dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, day: day, timeslot: timeslot}">
+  <strong>&Xi;
+    <span>{{customer.Suburb}}</span>
+  </strong>
+  <div>
+    <span>{{customer.PostCode}}</span>&nbsp;
+    <span>{{customer.DisplayName}} </span>
+  </div>
+</div>
