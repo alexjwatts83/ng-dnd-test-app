@@ -1,0 +1,72 @@
+.dnd-time-slot {
+    flex: 1 1 auto;
+    border: 1px solid #cacaca;
+    display: flex;
+    margin-bottom: 5px;
+    background-color: #ffffff;
+}
+
+.dnd-timeslot-times {
+    flex: 1 1 auto;
+}
+
+.dnd-timeslot-content {
+    flex: 2 1 auto;
+    display: flex;
+    padding: 5px;
+}
+
+.dnd-timeslot-dropzone {
+    background-color: #cccaca;
+    border: 1px solid darkgray;
+    padding: 5px;
+    flex: 1 1 auto;
+}
+
+.dnd-timeslot-customer {
+    border: 1px solid grey;
+    background-color: #ffffff;
+    padding: 0px 5px;
+}
+
+.dnd-timeslot-customer-heading {
+    display: flex;
+    color: #1d1d1d;;
+}
+
+.dnd-timeslot-customer-heading>span:first-child {
+    flex: 1 1 auto;
+}
+
+.timeslot-close {
+    color: #1d1d1d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.draggle-customer {
+    background: #eff4ff;
+    margin: 5px 0px;
+    padding: 5px;
+    color: #2d89ef;
+}
+
+.show-warning {
+    color: #1d1d1d;
+    background-color: #ffc40d;
+}
+
+.show-warning-red {
+    color: crimson;
+}
+
+.no-appointments {
+    background-color: #00a300;
+    color: #ffffff;
+}
+
+.all-booked {
+    background-color: grey;
+    border: 1px solid darkgray;
+    color: white;
+}

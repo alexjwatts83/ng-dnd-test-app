@@ -12,6 +12,8 @@ import { DndFilterPanelComponent } from './dnd-filter-panel/dnd-filter-panel.com
 import { DndFilterPanelItemComponent } from './dnd-filter-panel-item/dnd-filter-panel-item.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { DndDayComponent } from './dnd-day/dnd-day.component';
+import { DndCustomerComponent } from './dnd-customer/dnd-customer.component';
+import { DndTimeslotComponent } from './dnd-timeslot/dnd-timeslot.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DndDayComponent } from './dnd-day/dnd-day.component';
     DndFilterPanelComponent,
     DndFilterPanelItemComponent,
     EscapeHtmlPipe,
-    DndDayComponent
+    DndDayComponent,
+    DndCustomerComponent,
+    DndTimeslotComponent
   ],
   imports: [
     BrowserModule,

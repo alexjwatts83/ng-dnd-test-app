@@ -100,10 +100,6 @@ export class DndCalendarComponent implements OnInit {
     this._selectCustomer = customer;
   }
 
-  transferDataEventHandler(data: any) {
-    this.calendarDataService.transferDataEventHandler(data);
-  }
-
   getDays(): void {
     if (this._selectedTimeSlot != null) {
       this.SelectedTimeSlot.OpenCustomers = false;

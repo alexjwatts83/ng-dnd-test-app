@@ -8,51 +8,5 @@
     </div>
   </div>
   <div class="dnd-day-content">
-    <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
-      <div class="dnd-timeslot-times" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
-        <div>
-          <div>{{timeslot.Time}}</div>
-        </div>
-        <div>
-          <div>
-            <span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}
-          </div>
-        </div>
-      </div>
-      <div class="dnd-timeslot-content">
-        <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,day,timeslot)" class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
-          <div *ngIf="timeslot.Customers.length == 0">
-            <div>No Appointments</div>
-          </div>
-          <div *ngIf="timeslot.Customers.length > 0">
-            <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
-              <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,day,timeslot)">{{suburb.key}}
-                <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="dnd-timeslot-customer" *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers">
-            <div class="dnd-timeslot-customer-heading">
-                <span>&nbsp;Customers</span>
-                <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" class="timeslot-close">&times;</span>
-            </div>
-            <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
-                <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
-                  dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, day: day, timeslot: timeslot}">
-                  <strong>&Xi;
-                    <span>{{customer.Suburb}}</span>
-                  </strong>
-                  <div>
-                    <span>{{customer.PostCode}}</span>&nbsp;
-                    <span>{{customer.DisplayName}} </span>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-        <!-- <div style="">
-            
-          </div> -->
-      </div>
-    </div>
+    <app-dnd-timeslot *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index" [timeslot]="timeslot" [filterBy]="filterBy"></app-dnd-timeslot>
   </div>
