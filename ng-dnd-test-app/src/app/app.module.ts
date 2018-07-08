@@ -14,6 +14,7 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { DndDayComponent } from './dnd-day/dnd-day.component';
 import { DndCustomerComponent } from './dnd-customer/dnd-customer.component';
 import { DndTimeslotComponent } from './dnd-timeslot/dnd-timeslot.component';
+import { DndCalendarWeekComponent } from './dnd-calendar-week/dnd-calendar-week.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DndTimeslotComponent } from './dnd-timeslot/dnd-timeslot.component';
     EscapeHtmlPipe,
     DndDayComponent,
     DndCustomerComponent,
-    DndTimeslotComponent
+    DndTimeslotComponent,
+    DndCalendarWeekComponent
   ],
   imports: [
     BrowserModule,

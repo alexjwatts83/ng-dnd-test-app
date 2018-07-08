@@ -52,6 +52,7 @@ export class DndCalendarComponent implements OnInit {
     let index = this.calendarDataService.navigationDaysOptions.findIndex(x => x == 0);
     this.navigateDays = this.calendarDataService.navigationDaysOptions[index];
     this.takeDays = this.calendarDataService.takeDaysOptions[0];
+    this.takeDays = this.calendarDataService.takeDaysOptions[1];
     this.getDays();
   }
 

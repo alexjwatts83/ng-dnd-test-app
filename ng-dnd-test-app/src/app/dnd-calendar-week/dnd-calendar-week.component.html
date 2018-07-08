@@ -1,0 +1,25 @@
+<main id="calendar">
+  <section class="th">
+    <span>Sunday</span>
+    <span>Monday</span>
+    <span>Tuesday</span>
+    <span>Wednesday</span>
+    <span>Thursday</span>
+    <span>Friday</span>
+    <span>Saturday</span>
+  </section>
+  <div class="week" *ngFor="let week of dates | groupBy:'week'">
+    <div *ngFor="let day of week.value">
+      {{day.date | date:'fullDate'}}
+    </div>
+  </div>
+  <!-- <div class="week">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div data-date="1"></div>
+    <div data-date="2"></div>
+    <div data-date="3"></div>
+    <div data-date="4"></div>
+  </div> -->
+</main>
