@@ -11,6 +11,7 @@ import { MockNameService } from '../app/services/mock-name.service';
 import { DndFilterPanelComponent } from './dnd-filter-panel/dnd-filter-panel.component';
 import { DndFilterPanelItemComponent } from './dnd-filter-panel-item/dnd-filter-panel-item.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+import { DndDayComponent } from './dnd-day/dnd-day.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     DndFilterPanelComponent,
     DndFilterPanelItemComponent,
     EscapeHtmlPipe,
+    DndDayComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     DndModule.forRoot(),
-    FormsModule
   ],
   providers: [
     CalendarDataService

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DndCustomer } from '../models/dnd-customer';
 import { DndTimeSlot } from '../models/dnd-time-slot';
 import { DndDay } from '../models/dnd-day';
-// import { start } from 'repl';
-import { FormGroup, FormControl } from '@angular/forms';
 import { CalendarDataService } from '../services/calendar-data.service.service';
 
 @Component({
@@ -14,24 +12,20 @@ import { CalendarDataService } from '../services/calendar-data.service.service';
 
 export class DndCalendarComponent implements OnInit {
   private _selectCustomer: DndCustomer;
-  private _selectedTimeSlotIndex: number = -1;
-  private _selectedDayIndex: number = -1;
+  private _selectedTimeSlot: DndTimeSlot;
+  private _selectedDay: DndDay;
 
   days: DndDay[];
-  unschduledJobs: DndCustomer[] = [];
-  showUnscheduled: boolean = false;
   filterBy: string = 'Suburb';
-  model: any = {};
-  heroForm: any;
-  simpleDrop: any = null;
+  
   navigateDays: number;
   takeDays: number;
-  showConfirmationModal:boolean = false;
+  showConfirmationModal: boolean = false;
   showFilterPanel: boolean = true;
 
   get SelectedTimeSlot(): DndTimeSlot {
-    if (this._selectedTimeSlotIndex > -1) {
-      return this.SelectedDay.TimeSlots[this._selectedTimeSlotIndex];
+    if (this._selectedTimeSlot != null) {
+      return this._selectedTimeSlot;
     }
     return null;
   }
@@ -42,8 +36,8 @@ export class DndCalendarComponent implements OnInit {
     return null;
   }
   get SelectedDay(): DndDay {
-    if (this._selectedDayIndex > -1) {
-      return this.days[this._selectedDayIndex];
+    if (this._selectedDay != null) {
+      return this._selectedDay;
     }
     return null;
   }
@@ -53,126 +47,14 @@ export class DndCalendarComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
-  }
-
   ngOnInit() {
-    this.showFilterPanel=true;
-    this.model = {
-      filterBy: this.filterBy
-    };
-    let index = this.calendarDataService.navigationDaysOptions.findIndex(x=>x==0);
-    this.navigateDays  =this.calendarDataService.navigationDaysOptions[index];
+    this.showFilterPanel = true;
+    let index = this.calendarDataService.navigationDaysOptions.findIndex(x => x == 0);
+    this.navigateDays = this.calendarDataService.navigationDaysOptions[index];
     this.takeDays = this.calendarDataService.takeDaysOptions[0];
     this.getDays();
-    //this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
-
-    
-    this.unschduledJobs = [];
-    // if (this.showUnscheduled) {
-    // }
-    
   }
-
-  //todo: refactor and move to service
-  transferDataSuccess($event: any, droppedDayIndex: number, droppedTimeslotIndex: number) {
-    console.log('called transferDataSuccess');
-    this.simpleDrop = $event;
-    console.log(`droppedDayIndex: ${droppedDayIndex}`);
-    console.log(`_selectedDayIndex: ${this._selectedDayIndex}`);
-    console.log(`droppedTimeslotIndex: ${droppedTimeslotIndex}`);
-    console.log(`_selectedTimeSlotIndex: ${this._selectedTimeSlotIndex}`);
-
-    if (this.simpleDrop.dragData.fromUnscheduled) {
-      console.log('from unscheduled');
-      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
-      let filterView = [];
-      let selectedSlotIndex = -1;
-      this.unschduledJobs.forEach((element, index) => {
-        if (element.JobNumber === droppedJobNumber) {
-          selectedSlotIndex = index;
-        } else {
-          filterView.push(element);
-        }
-      });
-      // add to unscheduled
-      let concat = this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.unschduledJobs[selectedSlotIndex]);
-      console.log("concat:", concat);
-      this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
-
-      // and remove from scheduled
-      this.unschduledJobs = filterView;
-
-      return;
-    }
-    if (droppedDayIndex == -1 && droppedTimeslotIndex == -1) {
-      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
-      let filterView = [];
-      let selectedSlotIndex = -1;
-      this.SelectedTimeSlot.Customers.forEach((element, index) => {
-        if (element.JobNumber === droppedJobNumber) {
-          selectedSlotIndex = index;
-        } else {
-          filterView.push(element);
-        }
-      });
-      // add to unscheduled
-      let concat = this.unschduledJobs.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
-      console.log("concat:", concat);
-      this.unschduledJobs = concat;
-
-      // and remove from scheduled
-      this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
-
-      // maybe display modal
-      return;
-    }
-
-    let droppedOnSameDay = droppedDayIndex === this._selectedDayIndex;
-    let droppedOnSameTimeSlot = droppedTimeslotIndex === this._selectedTimeSlotIndex;
-
-    if (droppedOnSameDay && droppedOnSameTimeSlot) {
-      console.log('Dropped on same day and time slot, do nothing');
-    }
-    else {
-      let droppedJobNumber = this.simpleDrop.dragData.customer.JobNumber
-      let filterView = [];
-      let selectedSlotIndex = -1;
-      this.SelectedTimeSlot.Customers.forEach((element, index) => {
-        if (element.JobNumber === droppedJobNumber) {
-          selectedSlotIndex = index;
-        } else {
-          filterView.push(element);
-        }
-      });
-
-      console.log("selectedSlotIndex:", selectedSlotIndex);
-      let concat = this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers.concat(this.SelectedTimeSlot.Customers[selectedSlotIndex]);
-      console.log("concat:", concat);
-      this.days[droppedDayIndex].TimeSlots[droppedTimeslotIndex].Customers = concat;
-      console.log("dropped customer:", this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers[selectedSlotIndex]);
-      console.log("filterView:", filterView);
-      this.days[this._selectedDayIndex].TimeSlots[this._selectedTimeSlotIndex].Customers = filterView;
-    }
-  }
-
-  timeslotClicked(event: any, dayIndex: number, timeslotIndex: number) {
-    if (this._selectedDayIndex > -1) {
-      this.SelectedTimeSlot.OpenCustomers = false;
-    }
-    if ((this._selectedDayIndex != dayIndex)
-      || (this._selectedTimeSlotIndex != timeslotIndex)) {
-      this._selectedTimeSlotIndex = timeslotIndex;
-      this._selectedDayIndex = dayIndex;
-      this._selectCustomer = null;
-      console.log('day slot selected because different');
-    } else {
-      console.log('day slot remain same');
-    }
-    this.SelectedTimeSlot.OpenCustomers = true;
-  }
-
+  
   toggleCustomerClicked(event: any, customer: DndCustomer) {
     this._selectCustomer = customer;
   }
@@ -193,23 +75,38 @@ export class DndCalendarComponent implements OnInit {
     this.getDays();
   }
 
-  takeDaysClickedHandler(author){
+  takeDaysClickedHandler(author) {
     console.log(author);
     this.setTakeDays(Number(author));
   }
 
-  navigationDaysClickedHandler(author){
+  navigationDaysClickedHandler(author) {
     console.log(author);
     this.navigateToDay(Number(author));
   }
 
+  dayClickedHandler(day: any){
+    console.log(day);
+    this._selectedDay = day;
+  }
+
+  timeslotClickedHandler(timeslot: any){
+    console.log(timeslot);
+    this._selectedTimeSlot = timeslot;
+  }
+
+  customerClickedHandler(customer: any){
+    console.log(customer);
+    this._selectCustomer = customer;
+  }
+
   getDays(): void {
-    if (this._selectedTimeSlotIndex != -1) {
+    if (this._selectedTimeSlot != null) {
       this.SelectedTimeSlot.OpenCustomers = false;
     }
 
-    this._selectedTimeSlotIndex = -1;
-    this._selectedDayIndex = -1;
+    this._selectedTimeSlot = null;
+    this._selectedDay = null;
 
     if (this._selectCustomer != null) {
       this._selectCustomer = null;
@@ -220,25 +117,25 @@ export class DndCalendarComponent implements OnInit {
 
   action: string;
 
-  saveChanges(){
+  saveChanges() {
     this.action = 'Save';
-    this.showConfirmationModal=true;
+    this.showConfirmationModal = true;
   }
 
-  discardChanges(){
+  discardChanges() {
     this.action = 'Discard';
-    this.showConfirmationModal=true;
+    this.showConfirmationModal = true;
   }
 
-  closePoorMansModal2(){
-    this.showConfirmationModal=false;
+  closePoorMansModal2() {
+    this.showConfirmationModal = false;
   }
 
-  cancelClicked(){
+  cancelClicked() {
     this.closePoorMansModal2();
   }
 
-  okClicked(){
+  okClicked() {
     this.closePoorMansModal2();
     this.getDays();
   }

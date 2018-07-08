@@ -1,0 +1,122 @@
+.dnd-day {
+    /* flex: 1 1 auto;
+    margin: auto;
+    padding: 0px 5px;
+    align-self: flex-start;
+    border: 2px solid red;
+     */
+    flex: 1 1 auto;
+    padding: 0px 5px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.dnd-day-heading {
+    /* display: flex;
+    background-color: #ffffff;
+    border: 1px solid lightgray;
+    font-size: 14px; */
+    margin-bottom: 5px;
+    flex: 1 1 auto;
+}
+
+.dnd-day-content {
+    flex: 1 1 auto;
+}
+
+.dnd-time-slot {
+    flex: 1 1 auto;
+    border: 1px solid #cacaca;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.dnd-timeslot-times {
+    flex: 1 1 auto;
+}
+
+.dnd-timeslot-content {
+    flex: 2 1 auto;
+    display: flex;
+    padding: 5px;
+}
+
+.dnd-timeslot-dropzone {
+    background-color: #cccaca;
+    border: 1px solid darkgray;
+    padding: 5px;
+    flex: 1 1 auto;
+}
+
+.dnd-timeslot-customer {
+    border: 1px solid grey;
+    background-color: #ffffff;
+    padding: 0px 5px;
+}
+
+.dnd-timeslot-customer-heading {
+    display: flex;
+}
+
+.dnd-timeslot-customer-heading>span:first-child {
+    flex: 1 1 auto;
+}
+
+.timeslot-close {
+    color: #1d1d1d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.draggle-customer {
+    background: #eff4ff;
+    margin: 5px 0px;
+    padding: 5px;
+    color: #2d89ef;
+}
+
+/* 
+.dnd-timeslot-dropzone {
+    border: 0px solid red;
+    background-color: #cccaca;
+    border: 1px solid darkgray;
+}
+
+.dnd-timeslot-dropzone-item {
+    position: relative;
+    border: 0px solid #1d1d1d;
+    padding: 5px;
+}
+
+
+
+.draggle-customer {
+    background: #eff4ff;
+    margin: 5px 0px;
+    padding: 5px;
+    color: #2d89ef;
+}
+
+.dnd-timeslot-selected, .dnd-customer-selected {
+    border: 2px solid #1d1d1d;
+    width: 200px;
+    margin: auto;
+    padding: 5px;
+    background-color: #2d89ef;
+    color: white;
+    position: relative;
+}
+
+.dnd-customer-selected a {
+    color: crimson;
+}
+
+.show-warning {
+    color: #1d1d1d;
+    background-color: #ffc40d;
+}
+
+.show-warning-red {
+    color: crimson;
+} */

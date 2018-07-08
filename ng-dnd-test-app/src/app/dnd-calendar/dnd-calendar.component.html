@@ -1,90 +1,9 @@
-<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)" (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
-<div *ngIf="showUnscheduled" style="display: flex;border: 2px solid black;margin-bottom: 10px;min-height: 20px;">
-  <div>Unscheduled:&nbsp;</div>
-  <div style="flex: 1;display: flex;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,-1,-1)">
-    <div *ngIf="unschduledJobs.length ==0" style="padding-left: 10px;color: darkgrey">No Unscheduled jobs</div>
-    <div *ngIf="unschduledJobs.length > 0" style="padding-left: 0px;display: flex;flex-wrap: wrap;">
-      <div *ngFor="let customer of unschduledJobs; let customerIndex = index">
-        <div class="draggle-customer" style="margin-left: 5px;" title="Click to view '{{customer.DisplayName}}' details or drag to another time"
-          (click)="toggleCustomerClicked($event, customer)" dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: true}">
-          <strong>&Xi;
-            <span>{{customer.Suburb}}</span>
-          </strong>
-          <div>
-            <span>{{customer.PostCode}}</span>&nbsp;
-            <span>{{customer.DisplayName}} </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{takeDays}} || {{navigateDays}}
+<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
+  (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
+
 <div class="dnd-container">
-  <div class="dnd-day" *ngFor="let day of days; let dayIndex = index" [ngClass]="{'is-today': day.IsToday }">
-    <div class="dnd-timeslot-details">
-      <!-- <div class="flex-one">
-        <div class="dnd-timeslot-details-detail">
-          ({{day.Date | date:'dd/MM'}})
-        </div>
-      </div> -->
-      <div class="flex-one">
-        <div class="dnd-timeslot-details-detail">
-          <div>
-            {{day.Date | date:'dd/MM/yyyy'}}
-          </div>
-          <div>
-            {{day.Date | date:'EEEE'}}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dnd-time-slot" *ngFor="let timeslot of day.TimeSlots; let timeslotIndex = index">
-      <div class="dnd-timeslot-times" style="display: flex;flex-wrap: wrap;align-items: center;justify-content: center;" [ngClass]="{'show-warning': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">
-        <div style="border-bottom: 0px solid #ffffff;display: flex;justify-content: center;">
-          <div>{{timeslot.Time}}</div>
-        </div>
-        <div style="border: 0px solid blue;width: 100%;display: flex;justify-content: center;">
-          <div>
-            <span [ngClass]="{'show-warning-red': timeslot.TimeSlotsAllocated > timeslot.TimeSlotsTotal }">{{timeslot.TimeSlotsAllocated}}</span>/{{timeslot.TimeSlotsTotal}}
-          </div>
-        </div>
-      </div>
-      <div style="display: flex;flex: 2;padding: 5px;">
-        <div style="flex: 1;min-height: 20px;" dnd-droppable (onDropSuccess)="transferDataSuccess($event,dayIndex,timeslotIndex)"
-          class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
-          <div *ngIf="timeslot.Customers.length == 0" style="display: flex;align-items: center;justify-items: center;height: 100%;">
-            <div style="width: 100%;text-align: center;margin: auto;color: #ffffff">No Appointments</div>
-          </div>
-          <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
-            <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked($event,dayIndex,timeslotIndex)">{{suburb.key}}
-              <span class="mock-badge mock-badge-red">{{suburb.value.length}}</span>
-            </div>
-          </div>
-          <div *ngIf="timeslot.Customers.length > 0 && timeslot.OpenCustomers" style="border: 1px dashed grey;margin: 2px;padding: 2px;background-color: #ffffff;">
-            <div style="display: flex;align-items: center;">
-              <span style="flex: 1;color: #1d1d1d;">&nbsp;Customers</span>
-              <span title="close Customer Summary" (click)="timeslot.OpenCustomers = false" class="timeslot-close">&times;</span>
-            </div>
-            <div *ngFor="let customer of timeslot.Customers; let customerIndex = index">
-              <div class="draggle-customer" title="Click to view '{{customer.DisplayName}}' details or drag to another time" (click)="toggleCustomerClicked($event, customer)"
-                dnd-draggable [dragEnabled]="true" [dragData]="{customer: customer, fromUnscheduled: false}">
-                <strong>&Xi;
-                  <span>{{customer.Suburb}}</span>
-                </strong>
-                <div>
-                  <span>{{customer.PostCode}}</span>&nbsp;
-                  <span>{{customer.DisplayName}} </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <app-dnd-day *ngFor="let day of days; let dayIndex = index" [day]="day" [filterBy]="filterBy" (dayClicked)="dayClickedHandler($event)">
+  </app-dnd-day>
 </div>
 
 <!-- The Modal -->
