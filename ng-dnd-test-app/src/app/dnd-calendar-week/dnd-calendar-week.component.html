@@ -1,33 +1,18 @@
-<dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
-  (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
-<main id="calendar">
-    <!-- <div class="th" *ngFor="let week of days | groupBy:'week'">
-        <span *ngFor="let day of week.value">
-            {{day.Date | date:'EEEE' | uppercase}}
-      </span>
-    </div> -->
-    <!-- <section class="th" *ngFor="let week of days | groupBy:'week'">
-      asdasd
-    </div> -->
-  <!-- <section class="th">
-    <span>Sunday</span>
-    <span>Monday</span>
-    <span>Tuesday</span>
-    <span>Wednesday</span>
-    <span>Thursday</span>
-    <span>Friday</span>
-    <span>Saturday</span>
-  </section> -->
-  <div class="week" *ngFor="let week of days | groupBy:'week'">
-    <div class="day" *ngFor="let day of week.value">
-      <app-dnd-day [day]="day" [filterBy]="filterBy" (dayClicked)="dayClickedHandler($event)">
+<div>
+  <dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
+    (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
+  <main id="calendar">
+    <div class="week" *ngFor="let week of days | groupBy:'week'">
+      <div class="day" *ngFor="let day of week.value">
+        <app-dnd-day [day]="day" [filterBy]="filterBy" (dayClicked)="dayClickedHandler($event)">
         </app-dnd-day>
+      </div>
     </div>
-  </div>
-</main>
-<!-- <div>
+  </main>
+  <!-- <div>
       <pre>{{day | json}}</pre>
     </div> -->
-    <!-- <div>
+  <!-- <div>
         <pre>{{days | json}}</pre>
       </div> -->
+</div>

@@ -7,11 +7,12 @@
 }
 
 .dnd-timeslot-times {
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
+    min-width: 40px;
 }
 
 .dnd-timeslot-content {
-    flex: 2 1 auto;
+    flex: 1 1 auto;
     display: flex;
     padding: 5px;
 }

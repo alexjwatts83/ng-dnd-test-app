@@ -1,71 +1,73 @@
-<div (click)="showFilterPanel = !showFilterPanel" class="show-filter-panel-toggle">
-  Show/Hide Filters
-</div>
-<div *ngIf="showFilterPanel" class="filter-panel">
-  <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content">
-      <form name="form2">
-        <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" [checked]="filterBy == 'Suburb'" name="filterBy"> Suburb
-        <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" [checked]="filterBy == 'PostCode'" name="filterBy"> PostCode
-      </form>
-    </div>
-    <div class="filter-panel-item-description">
-      Group By
-    </div>
-  </dnd-filter-panel-item>
-  <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content">
-      <div style="flex: 1;background-color: transparent;display: flex;">
-        <div style="flex: 1;">Brand</div>
-        <div style="flex: 3;text-align: left;">
-          <select style="font-size: 10px; width: 90%;">
-            <option *ngFor="let brand of brands;" value="{{brand}}">{{brand}}</option>
-          </select>
+<div class="filterContainer">
+  <div (click)="showFilterPanel = !showFilterPanel" class="show-filter-panel-toggle">
+    Show/Hide Filters
+  </div>
+  <div *ngIf="showFilterPanel" class="filter-panel">
+    <dnd-filter-panel-item class="filter-panel-item">
+      <div class="filter-panel-item-content">
+        <form name="form2">
+          <input type="radio" value="Suburb" (click)="filterBy = 'Suburb'" [checked]="filterBy == 'Suburb'" name="filterBy"> Suburb
+          <input type="radio" value="PostCode" (click)="filterBy = 'PostCode'" [checked]="filterBy == 'PostCode'" name="filterBy"> PostCode
+        </form>
+      </div>
+      <div class="filter-panel-item-description">
+        Group By
+      </div>
+    </dnd-filter-panel-item>
+    <dnd-filter-panel-item class="filter-panel-item">
+      <div class="filter-panel-item-content">
+        <div style="flex: 1;background-color: transparent;display: flex;">
+          <div style="flex: 1;">Brand</div>
+          <div style="flex: 3;text-align: left;">
+            <select style="font-size: 10px; width: 90%;">
+              <option *ngFor="let brand of brands;" value="{{brand}}">{{brand}}</option>
+            </select>
+          </div>
+        </div>
+        <div style="flex: 1;background-color: transparent;display: flex;">
+          <div style="flex: 1;">State</div>
+          <div style="flex: 3;text-align: left;">
+            <select style="font-size: 10px; width: 90%;">
+              <option *ngFor="let state of states;" value="{{state}}">{{state}}</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div style="flex: 1;background-color: transparent;display: flex;">
-        <div style="flex: 1;">State</div>
-        <div style="flex: 3;text-align: left;">
-          <select style="font-size: 10px; width: 90%;">
-            <option *ngFor="let state of states;" value="{{state}}">{{state}}</option>
-          </select>
+      <div class="filter-panel-item-description">
+        Filter
+      </div>
+    </dnd-filter-panel-item>
+    <dnd-filter-panel-item class="filter-panel-item">
+      <div class="filter-panel-item-content-cemtered">
+        <div class="dnd-nav" *ngFor="let takeDaysOption of takeDaysOptions;">
+          <div (click)="takeDaysClicked($event,takeDaysOption)">{{formatDays(takeDaysOption)}}
+            <span *ngIf="takeDaysOption == takeDays">&#9745;</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="filter-panel-item-description">
-      Filter
-    </div>
-  </dnd-filter-panel-item>
-  <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content-cemtered">
-      <div class="dnd-nav" *ngFor="let takeDaysOption of takeDaysOptions;">
-        <div (click)="takeDaysClicked($event,takeDaysOption)">{{formatDays(takeDaysOption)}}
-          <span *ngIf="takeDaysOption == takeDays">&#9745;</span>
+      <div class="filter-panel-item-description">
+        Take
+      </div>
+    </dnd-filter-panel-item>
+    <dnd-filter-panel-item class="filter-panel-item">
+      <div class="filter-panel-item-content-cemtered">
+        <div class="dnd-nav" *ngFor="let navigationDaysOption of navigationDaysOptions;">
+          <div (click)="navigationDaysClicked($event, navigationDaysOption)">{{formatDays(navigationDaysOption)}}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="filter-panel-item-description">
-      Take
-    </div>
-  </dnd-filter-panel-item>
-  <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content-cemtered">
-      <div class="dnd-nav" *ngFor="let navigationDaysOption of navigationDaysOptions;">
-        <div (click)="navigationDaysClicked($event, navigationDaysOption)">{{formatDays(navigationDaysOption)}}
-        </div>
+      <div class="filter-panel-item-description">
+        Days
       </div>
-    </div>
-    <div class="filter-panel-item-description">
-      Days
-    </div>
-  </dnd-filter-panel-item>
-  <dnd-filter-panel-item class="filter-panel-item">
-    <div class="filter-panel-item-content">
-      &nbsp;
-    </div>
-    <div class="filter-panel-item-description">
-      <div (click)="saveChanges()" class="mock-buttons">Save</div>
-      <div (click)="discardChanges()" class="mock-buttons">Discard</div>
-    </div>
-  </dnd-filter-panel-item>
+    </dnd-filter-panel-item>
+    <dnd-filter-panel-item class="filter-panel-item">
+      <div class="filter-panel-item-content">
+        &nbsp;
+      </div>
+      <div class="filter-panel-item-description">
+        <div (click)="saveChanges()" class="mock-buttons">Save</div>
+        <div (click)="discardChanges()" class="mock-buttons">Discard</div>
+      </div>
+    </dnd-filter-panel-item>
+  </div>
 </div>

@@ -11,9 +11,7 @@
   </div>
   <div class="dnd-timeslot-content">
     <div dnd-droppable (onDropSuccess)="transferDataSuccess($event,day,timeslot)" class="dnd-timeslot-dropzone" [ngClass]="{'no-appointments': timeslot.Customers.length == 0,'all-booked': timeslot.Customers.length >= timeslot.TimeSlotsTotal }">
-      <div *ngIf="timeslot.Customers.length == 0">
-        <div>No Appointments</div>
-      </div>
+      <div *ngIf="timeslot.Customers.length == 0">No Appointments</div>
       <div *ngIf="timeslot.Customers.length > 0">
         <div *ngFor="let suburb of timeslot.Customers | groupBy:filterBy">
           <div class="dnd-timeslot-dropzone-item" title="Click to view all customer details" (click)="timeslotClicked(timeslot)">{{suburb.key}}

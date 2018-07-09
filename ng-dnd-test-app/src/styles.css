@@ -8,8 +8,11 @@ html, body {
 }
 
 body {
+    position: relative;
     font: 0.8em/1.5em 'Arial', sans-serif;
-    background-color: #cacaca;
+    background-color: grey;
+    height: 100%;
+    width: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
 .dnd-drag-start {
