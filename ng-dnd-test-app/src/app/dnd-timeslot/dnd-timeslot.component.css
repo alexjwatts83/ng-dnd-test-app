@@ -56,6 +56,7 @@
 .no-appointments {
     background-color: #00a300;
     color: #ffffff;
+    text-align: center;
 }
 
 .all-booked {

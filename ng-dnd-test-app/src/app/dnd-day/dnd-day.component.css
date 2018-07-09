@@ -26,7 +26,8 @@
     font-size: 14px; */
     flex: 1 1 auto;
     text-align: right;
-    padding: 0px 5px;;
+    padding: 0px 5px;
+    margin-bottom: 1px;
 }
 
 .dnd-day-content {
@@ -35,9 +36,23 @@
 }
 
 .is-today {
-    /* background-color: #eff4ff;
-    border: 1px solid #2d89ef; */
+    /* background-color: #2d89ef; */
+    /* border: 1px solid #2d89ef; */
 }
+
+/* .is-today > .dnd-day-content{
+    background-color: darkcyan;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+} */
+
+.is-today > .dnd-day-heading{
+    background-color: #2d89ef;
+    color: #ffffff;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+
 
 .is-sunday {
     /* background-color: #ffffff;
