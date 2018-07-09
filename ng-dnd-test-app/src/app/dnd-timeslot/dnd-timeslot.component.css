@@ -8,9 +8,15 @@
 
 .dnd-timeslot-times {
     /* flex: 1 1 auto; */
+    display: flex;
     min-width: 40px;
+    padding-left: 5px;
+    justify-content: center;
+    flex-direction: column;
 }
-
+.dnd-timeslot-times > div{
+    flex: 1 1 auto;
+}
 .dnd-timeslot-content {
     flex: 1 1 auto;
     display: flex;
