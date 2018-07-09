@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as moment from 'moment';
 import { CalendarDataService } from '../services/calendar-data.service.service';
+import { CalendarDataObservableService } from '../services/calendar-data-observable.service';
 import { DndDay } from '../models/dnd-day';
+import { Subscription,Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dnd-calendar-week',
   templateUrl: './dnd-calendar-week.component.html',
   styleUrls: ['./dnd-calendar-week.component.css']
 })
-export class DndCalendarWeekComponent implements OnInit {
+export class DndCalendarWeekComponent implements OnInit, OnDestroy {
   days: DndDay[];
+  responses: Observable<DndDay[]>;
   navigateDays: number = 0;
   takeDays: number = 14;
   filterBy: string = 'PostCode';
-  constructor(private calendarDataService: CalendarDataService) {
+  subscription: Subscription;
+  constructor(private calendarDataService: CalendarDataService,private calendarDataObservableService: CalendarDataObservableService) {
 
   }
 
@@ -21,9 +25,18 @@ export class DndCalendarWeekComponent implements OnInit {
     this.days = [];
     this.retrieveDays();
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
+
   retrieveDays() {
-    this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
-    console.log('days', this.days);
+    // this.days = this.calendarDataService.getDays(this.navigateDays, this.takeDays);
+    //console.log('days', this.days);
+    this.calendarDataObservableService.loadAll(this.navigateDays, this.takeDays);
+    this.responses = this.calendarDataObservableService.todos;
+    
+    //console.log('responses', this.responses);
   }
 
   navigateToDay(daysAdd: number) {

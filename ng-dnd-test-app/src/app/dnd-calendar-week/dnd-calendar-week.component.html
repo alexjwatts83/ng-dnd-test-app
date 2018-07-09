@@ -2,7 +2,7 @@
   <dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
     (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
   <main id="calendar">
-    <div class="week" *ngFor="let week of days | groupBy:'week'">
+    <div class="week" *ngFor="let week of responses | async | groupBy:'week'">
       <div class="day" *ngFor="let day of week.value">
         <app-dnd-day [day]="day" [filterBy]="filterBy" (dayClicked)="dayClickedHandler($event)">
         </app-dnd-day>
