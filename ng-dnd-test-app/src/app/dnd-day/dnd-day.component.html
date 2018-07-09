@@ -1,9 +1,9 @@
-<div class="dnd-day" [ngClass]="{'is-today': day.IsToday }">
+<div class="dnd-day" [ngClass]="{'is-today': day.IsToday,'is-sunday': day.IsSunday }">
   <div class="dnd-day-heading">
     <div>
       {{day.Date | date:'dd/MM/yyyy'}}
     </div>
-    <div>
+    <div *ngIf="showDay">
       {{day.Date | date:'EEEE'}}
     </div>
   </div>

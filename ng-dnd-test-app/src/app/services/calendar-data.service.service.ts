@@ -23,7 +23,7 @@ export class CalendarDataService {
 
   public getDays(startFrom: number, take: number): DndDay[] {
     this._days = [];
-    let startFromDate = this.getMonday(new Date());
+    let startFromDate = this.getSunday(new Date());
     if (startFrom == 0) {
       this._currentStartFrom = 0;
     } else {
@@ -77,6 +77,13 @@ export class CalendarDataService {
     var day = date.getDay() || 7;
     if (day !== 1)
       date.setHours(-24 * (day - 1));
+    return date;
+  }
+
+  private getSunday(date) {
+    var day = date.getDay() || 7;
+    if (day !== 0)
+      date.setHours(-24 * (day + 0));
     return date;
   }
 

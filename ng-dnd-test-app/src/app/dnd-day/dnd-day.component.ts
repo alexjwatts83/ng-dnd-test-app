@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DndDay } from '../models/dnd-day';
-import { DndTimeSlot } from '../models/dnd-time-slot';
-import { DndCustomer } from '../models/dnd-customer';
-import { CalendarDataService, ITransferCustomerData } from '../services/calendar-data.service.service';
+import { CalendarDataService } from '../services/calendar-data.service.service';
 
 @Component({
   selector: 'app-dnd-day',
@@ -19,10 +17,8 @@ export class DndDayComponent implements OnInit {
   @Output()
   dayClick: EventEmitter<DndDay> = new EventEmitter<DndDay>();
 
-  // @Output()
-  // transferDataEvent: EventEmitter<ITransferCustomerData> = new EventEmitter<ITransferCustomerData>();
-
-  //simpleDrop: any = null;
+  @Input()
+  showDay: boolean;
 
   constructor(private calendarDataService: CalendarDataService) { }
 
