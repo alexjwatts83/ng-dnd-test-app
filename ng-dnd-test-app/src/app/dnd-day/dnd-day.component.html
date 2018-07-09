@@ -1,4 +1,7 @@
 <div class="dnd-day" [ngClass]="{'is-today': day.IsToday,'is-sunday': day.IsSunday }">
+  <div class="dnd-day-heading-big">
+      {{day.Date | date:'EEEE' | uppercase}}
+  </div>
   <div class="dnd-day-heading">
     <div>
       {{day.Date | date:'dd/MM/yyyy'}}

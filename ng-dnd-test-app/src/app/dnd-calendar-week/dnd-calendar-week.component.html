@@ -1,11 +1,11 @@
 <dnd-filter-panel showFilterPanel="showFilterPanel" [(filterBy)]="filterBy" [takeDays]="takeDays" (takeDaysClick)="takeDaysClickedHandler($event)"
   (navigationDaysClick)="navigationDaysClickedHandler($event)"></dnd-filter-panel>
 <main id="calendar">
-    <div class="th" *ngFor="let week of days | groupBy:'week'">
+    <!-- <div class="th" *ngFor="let week of days | groupBy:'week'">
         <span *ngFor="let day of week.value">
             {{day.Date | date:'EEEE' | uppercase}}
       </span>
-    </div>
+    </div> -->
     <!-- <section class="th" *ngFor="let week of days | groupBy:'week'">
       asdasd
     </div> -->
