@@ -1,0 +1,33 @@
+<!-- The Modal -->
+<div *ngIf="showModal" id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="closePoorMansModal()">&times;</span>
+      <h2>{{selectedCustomer.JobNumber}}</h2>
+    </div>
+    <div class="modal-body">
+      <div class="box" style="width: 300px;">
+        <div>Lead Number:</div>
+        <div>
+          <a href="{{selectedCustomer.Link}}">{{selectedCustomer.LeadNumber}}</a>
+        </div>
+        <div>Showroom:</div>
+        <div>{{selectedCustomer.Showroom}}</div>
+        <div>Name:</div>
+        <div>{{selectedCustomer.DisplayName}}</div>
+        <div>Suburb:</div>
+        <div>{{selectedCustomer.Suburb}}</div>
+        <div>PostCode:</div>
+        <div>{{selectedCustomer.PostCode}}</div>
+        <div>Consultant:</div>
+        <div>{{selectedCustomer.Consultant}}</div>
+        <div>Date:</div>
+        <div>{{selectedCustomer.AppointmentDate | date:'dd/MM/yyyy hh:mm a'}}</div>
+        <div>Designer:</div>
+        <div>{{selectedCustomer.Designer}}</div>
+        <div>Comments:</div>
+        <div>{{selectedCustomer.Comment}}</div>
+      </div>
+    </div>
+  </div>
+</div>

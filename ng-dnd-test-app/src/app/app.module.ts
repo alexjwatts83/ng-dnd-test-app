@@ -17,6 +17,7 @@ import { DndTimeslotComponent } from './dnd-timeslot/dnd-timeslot.component';
 import { DndCalendarWeekComponent } from './dnd-calendar-week/dnd-calendar-week.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { CalendarDataObservableService } from './services/calendar-data-observable.service';
+import { PoorMansModalComponent } from './modals/poor-mans-modal/poor-mans-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CalendarDataObservableService } from './services/calendar-data-observab
     DndDayComponent,
     DndCustomerComponent,
     DndTimeslotComponent,
-    DndCalendarWeekComponent
+    DndCalendarWeekComponent,
+    PoorMansModalComponent
   ],
   imports: [
     BrowserModule,

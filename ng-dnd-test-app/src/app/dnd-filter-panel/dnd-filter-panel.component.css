@@ -6,14 +6,14 @@
 } */
 .show-filter-panel-toggle {
     cursor: pointer;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .filter-panel {
     display: flex;
     border: 1px solid #cacaca;
     margin-bottom: 10px;
-    font-size: 10px;
+    font-size: 12px;
     padding: 5px;
     /* background-color: #cacaca; */
     background-color: #ffffff;
@@ -65,7 +65,9 @@
 }
 
 .dnd-nav>* {
-    background-color: lightskyblue;
+    background-color: #696969;
+    border: 1px solid #cacaca;
+    color: #ffffff;
     padding: 5px;
     margin: 5px;
     text-align: center;
@@ -76,7 +78,9 @@
 
 
 .mock-buttons {
-    background-color: lightskyblue;
+    background-color: #696969;
+    border: 1px solid #cacaca;
+    color: #ffffff;
     padding: 5px;
     margin: 5px;
     text-align: center;

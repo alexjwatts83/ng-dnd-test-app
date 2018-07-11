@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DndDay } from '../models/dnd-day';
 import { CalendarDataService } from './calendar-data.service.service';
+import { DndCustomer } from '../models/dnd-customer';
 
 @Injectable()
 export class CalendarDataObservableService {
@@ -14,7 +15,8 @@ export class CalendarDataObservableService {
   private dataStore: {
     todos: DndDay[]
   };
-
+  showModal: boolean = false;
+  selectedCustomer: DndCustomer = null;
   constructor(private http: HttpClient, private calendarDataService: CalendarDataService) {
     this.baseUrl = 'https://jsonplaceholder.typicode.com';
     this.dataStore = { todos: [] };
@@ -24,13 +26,18 @@ export class CalendarDataObservableService {
 
   loadAll(startFrom: number, take: number) {
     this.http.get(`${this.baseUrl}/posts`).subscribe(data => {
-      this.dataStore.todos = this.mapDataToDndDays(data,startFrom,take);
+      this.dataStore.todos = this.mapDataToDndDays(data, startFrom, take);
       this._todos.next(Object.assign({}, this.dataStore).todos);
     }, error => console.log('Could not load todos.'));
   }
 
   mapDataToDndDays(data: any, startFrom: number, take: number): DndDay[] {
-    console.log('data',data);
-    return this.calendarDataService.getDays(startFrom,take);
+    console.log('data', data);
+    return this.calendarDataService.getDays(startFrom, take);
+  }
+
+  doShowModal(customer: DndCustomer) {
+    this.showModal =false;
+    this.selectedCustomer =customer;
   }
 }

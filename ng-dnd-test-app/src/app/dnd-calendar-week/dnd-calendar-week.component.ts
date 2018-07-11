@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as moment from 'moment';
-import { CalendarDataService } from '../services/calendar-data.service.service';
 import { CalendarDataObservableService } from '../services/calendar-data-observable.service';
 import { DndDay } from '../models/dnd-day';
-import { Subscription,Observable } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { DndCustomer } from '../models/dnd-customer';
 
 @Component({
   selector: 'app-dnd-calendar-week',
@@ -17,7 +16,14 @@ export class DndCalendarWeekComponent implements OnInit, OnDestroy {
   takeDays: number = 14;
   filterBy: string = 'PostCode';
   subscription: Subscription;
-  constructor(private calendarDataService: CalendarDataService,private calendarDataObservableService: CalendarDataObservableService) {
+  get showModal(): boolean{
+    return this.calendarDataObservableService.showModal;
+  }
+  get selectedCustomer(): DndCustomer{
+    return this.calendarDataObservableService.selectedCustomer;
+  }
+  
+  constructor(private calendarDataObservableService: CalendarDataObservableService) {
 
   }
 
@@ -26,7 +32,7 @@ export class DndCalendarWeekComponent implements OnInit, OnDestroy {
     this.retrieveDays();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
@@ -35,7 +41,7 @@ export class DndCalendarWeekComponent implements OnInit, OnDestroy {
     //console.log('days', this.days);
     this.calendarDataObservableService.loadAll(this.navigateDays, this.takeDays);
     this.responses = this.calendarDataObservableService.todos;
-    
+
     //console.log('responses', this.responses);
   }
 
@@ -61,4 +67,8 @@ export class DndCalendarWeekComponent implements OnInit, OnDestroy {
     this.navigateToDay(Number(author));
   }
 
+  closeModalClickHandler(click){
+    this.calendarDataObservableService.showModal=false;
+    this.calendarDataObservableService.selectedCustomer=null;
+  }
 }
